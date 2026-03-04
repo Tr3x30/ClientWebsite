@@ -1,0 +1,13 @@
+#header{
+    background-color: rgb(218, 91, 91);
+    min-height:120px;
+}
+
+.title{
+    display: flex;
+    gap:20px;
+}
+
+#footer{
+    background-color: aquamarine;
+}
