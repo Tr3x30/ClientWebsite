@@ -1,6 +1,6 @@
 function sizeLogoToNav() {
     const nav = document.getElementById('flexnav');
-    const logoImg = document.querySelector('#header #logo');
+    const logoImg = document.querySelector('#header #logo img');
 
     if (!nav || !logoImg) return;
 
