@@ -5,6 +5,36 @@
     padding: 40px;
 }
 
+#footer {
+    background-color: rgb(105, 161, 157);
+    color: white;
+
+    display: flex;
+    justify-content: space-around;
+
+    padding: 50px 50px;
+    margin-top: 40px;
+}
+
+.column1{
+    display:flex;
+    flex-direction: column;
+}
+
+.column1 h3{
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.column1 p{
+    margin:5px 0;
+    cursor: pointer;
+}
+
+.column1 p:hover{
+    color: #ff4444;
+}
+
 .map{
     width:60%;
 }
@@ -29,8 +59,4 @@
 .title{
     display: flex;
     gap:20px;
-}
-
-#footer{
-    background-color: aquamarine;
 }
