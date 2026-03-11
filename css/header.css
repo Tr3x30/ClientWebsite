@@ -5,7 +5,7 @@
 
 #header {
     display: flex;
-    background-color: lightblue;
+    background-color: #0066B3;
     padding: 1vw;
     justify-content: space-between;
     align-items: center;
@@ -34,17 +34,22 @@
     justify-content: center;
     text-decoration: none;
     padding: 1vw 0;
-    color: white;
+    color: #0066B3;
     flex: 1 1 150px;
     font-size: 2vw;
     flex-grow: 1;
-    background-color: #223089;
+    background-color: white;
+}
+
+#flexnav a:hover {
+    background-color: #961B41;
+    color: white;
 }
 
 #header p {
     font-size: 1.8vw;
     font-family: "Montserrat", sans-serif;
-    color: #223089;
+    color: white;
     font-weight: 600;
     margin: 0;
     display: flex;
