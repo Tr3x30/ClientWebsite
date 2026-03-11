@@ -1,0 +1,22 @@
+#comment{
+    display:flex;
+    align-items: center;
+    gap:40px;
+    padding: 40px;
+}
+
+.map{
+    width:60%;
+}
+
+.address{
+    width:40%;
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+
+.mapicon{
+    width:40px;
+    height: 40px;
+}
