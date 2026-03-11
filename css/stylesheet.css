@@ -3,7 +3,7 @@
     min-height:120px;
 }
 
-.title{
+#title{
     display: flex;
     gap:20px;
 }

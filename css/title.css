@@ -1,0 +1,43 @@
+#flexnav {
+    display: flex;
+    width: 70vw;
+    align-items: stretch;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 1vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+#flexnav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #223089;
+    padding: 1vw 0;
+    color: white;
+    flex: 1 1 150px;
+    font-size: 2vw;
+    font-family: "Montserrat", sans-serif;
+    flex-grow: 1;
+}
+
+#header * {
+    background-color: transparent;
+    text-align: center;
+}
+
+#header {
+    display: flex;
+    background-color: lightblue;
+    padding: 1vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header img {
+    height: 4.5vw;
+    flex-grow: 1;
+    display: block;
+}
