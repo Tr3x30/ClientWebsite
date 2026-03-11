@@ -1,0 +1,36 @@
+#comment{
+    display:flex;
+    align-items: center;
+    gap:40px;
+    padding: 40px;
+}
+
+.map{
+    width:60%;
+}
+
+.address{
+    width:40%;
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+
+.mapicon{
+    width:40px;
+    height: 40px;
+}
+
+#header{
+    background-color: rgb(218, 91, 91);
+    min-height:120px;
+}
+
+.title{
+    display: flex;
+    gap:20px;
+}
+
+#footer{
+    background-color: aquamarine;
+}
