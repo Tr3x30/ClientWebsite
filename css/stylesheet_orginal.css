@@ -30,6 +30,7 @@ html {
     gap: 40px;
     padding:60px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .video{
@@ -42,7 +43,8 @@ html {
 }
 
 .videoText{
-    width:50%;
+    width: 40%;
+    min-width: 500px;
 }
 
 .videoText h2{
