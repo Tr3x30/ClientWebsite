@@ -29,6 +29,7 @@ html {
     align-items: center;
     gap: 40px;
     padding:60px;
+    flex-wrap: wrap;
 }
 
 .video{
