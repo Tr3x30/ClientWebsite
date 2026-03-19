@@ -5,7 +5,7 @@
     color: #0066B3;
     max-width: 500px;
     margin: auto;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 #event-countdown #timer {
@@ -35,6 +35,10 @@
 }
 
 @media screen and (max-width: 600px) {
+    #event-countdown #event-name {
+        max-width: 400px;
+    }
+
     #event-countdown #timer {
         max-width: 400px;
     }

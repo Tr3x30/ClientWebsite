@@ -37,6 +37,23 @@ function updateCountdown(targetEpoch) {
     setTwoDigits(units[4], secs);
 }
 
+function resizeEventName() {
+    const eventName = document.getElementById("event-name");
+    const computed = window.getComputedStyle(eventName);
+
+    // helper to convert "123px" > 123
+    const px = (value) => parseFloat(value);
+
+    eventName.style.fontSize = "20px";
+
+    let fontSize = px(computed.fontSize);
+    let maxWidth = px(computed.maxWidth);
+    let width = px(computed.width);
+    let scale = maxWidth / width;
+    console.log(`${maxWidth} / ${width} = ${scale}`);
+    eventName.style.fontSize = `${Math.floor(fontSize * scale)}px`;
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     let EPOCH = Date.now();
     let EVENT = "9062 BUILD DAY";
@@ -54,21 +71,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const eventName = document.getElementById("event-name");
-
     eventName.textContent = EVENT;
-
-    const computed = window.getComputedStyle(eventName);
-
-    // helper to convert "123px" → 123
-    const px = (value) => parseFloat(value);
-
-    const fontSize = px(computed.fontSize);
-    const maxWidth = px(computed.maxWidth);
-    const width = px(computed.width);
-
-    const scale = maxWidth / width;
-
-    eventName.style.fontSize = `${fontSize * scale}px`;
+    resizeEventName();
 
     updateCountdown(EPOCH);
 
@@ -79,4 +83,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             clearInterval(timerInterval);
         }
     }, 1000);
+});
+
+window.addEventListener('resize', () => {
+    console.log('huh');
+    resizeEventName();
 });
