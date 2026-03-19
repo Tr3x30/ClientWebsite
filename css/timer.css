@@ -1,0 +1,50 @@
+#event-countdown #event-name {
+    display: block;
+    width: fit-content;
+    text-align: center;
+    color: #0066B3;
+    max-width: 500px;
+    margin: auto;
+    font-size: 25px;
+}
+
+#event-countdown #timer {
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    margin: auto;
+}
+
+#event-countdown #timer .unit {
+    display: flex;
+    flex-direction: column;
+    width: 75px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 25px;
+    background-color: #0066B3;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#event-countdown #timer .unit .digits {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+}
+
+@media screen and (max-width: 600px) {
+    #event-countdown #timer {
+        max-width: 400px;
+    }
+
+    #event-countdown #timer .unit {
+        font-size: 20px;
+        width: 60px;
+    }
+
+    #event-countdown #timer .unit .digits {
+        font-size: 40px;
+    }
+}

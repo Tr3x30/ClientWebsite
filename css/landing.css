@@ -70,4 +70,13 @@
     #banner #about {
         padding: 2%;
     }
+
+    #first {
+        flex-direction: column;
+    }
+
+    #first img {
+        margin: auto;
+        width: 50%;
+    }
 }
