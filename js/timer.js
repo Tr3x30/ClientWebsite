@@ -54,13 +54,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const eventName = document.getElementById("event-name");
-    const computed = window.getComputedStyle(eventName)
+
     eventName.textContent = EVENT;
-    console.log(computed);
-    console.log(computed.fontSize.replaceAll("px", "") * (computed.maxWidth.replaceAll("px", "") / computed.width.replaceAll("px", "")));
 
-    eventName.style.fontSize = computed.fontSize.replaceAll("px", "") * (computed.maxWidth.replaceAll("px", "") / computed.width.replaceAll("px", "")) + "px";
+    const computed = window.getComputedStyle(eventName);
 
+    // helper to convert "123px" → 123
+    const px = (value) => parseFloat(value);
+
+    const fontSize = px(computed.fontSize);
+    const maxWidth = px(computed.maxWidth);
+    const width = px(computed.width);
+
+    const scale = maxWidth / width;
+
+    eventName.style.fontSize = `${fontSize * scale}px`;
 
     updateCountdown(EPOCH);
 
