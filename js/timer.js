@@ -1,5 +1,5 @@
 async function loadData() {
-    const response = await fetch("./../database/competitions.json");;
+    const response = await fetch("https://tr3x30.github.io/ClientWebsite/database/competitions.json");;
     const data = await response.json();
     return data;
 }
