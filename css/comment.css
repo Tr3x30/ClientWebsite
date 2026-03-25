@@ -27,6 +27,7 @@
 .ball:nth-child(4) {top: 55%; left: 50%; }
 .ball:nth-child(5) {top: 70%; left: 60%; }
 .ball:nth-child(6) {top: 85%; left: 70%; }
+.ball:nth-child(7) {top: 100%; left: 80%; }
 
 .ball.active{
     transform: scale(1.5);
