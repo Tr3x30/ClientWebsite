@@ -2,6 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const container = document.getElementById("comment");
 
+    if (!container) {
+        console.error("ERROR: #comment container missing");
+        return;
+    }
+
     /* =========================
        SPONSOR DATA
     ========================= */
@@ -51,9 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
-
     /* =========================
-       MOUSE PARALLAX
+       PARALLAX
     ========================= */
 
     let targetX = 0;
@@ -79,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(animate);
     }
 
-
     /* =========================
        CREATE BALLS
     ========================= */
@@ -94,23 +97,21 @@ document.addEventListener("DOMContentLoaded", () => {
         ball.className = "ball";
 
         ball.innerHTML = `
-<div class="inner">
-    <div class="front">
-        <img src="${s.img}">
-    </div>
+            <div class="inner">
+                <div class="front">
+                    <img src="${s.img}">
+                </div>
 
-    <div class="back">
-        <h3>${s.name}</h3>
-        <p>${s.desc}</p>
-        <a href="${s.link}" target="_blank">Visit</a>
-    </div>
-</div>
-`;
+                <div class="back">
+                    <h3>${s.name}</h3>
+                    <p>${s.desc}</p>
+                    <a href="${s.link}" target="_blank">Visit</a>
+                </div>
+            </div>
+        `;
 
         ball.style.top = Math.random() * 90 + "%";
         ball.style.left = Math.random() * 90 + "%";
-
-        /* CLICK EVENT */
 
         ball.addEventListener("click", () => {
 
@@ -127,8 +128,5 @@ document.addEventListener("DOMContentLoaded", () => {
         container.appendChild(ball);
     }
 
-    /* START ANIMATION */
-
     animate();
-
 });
