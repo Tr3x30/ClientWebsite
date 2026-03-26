@@ -45,19 +45,30 @@ const sponsors = [
     }
 ];
 
-const balls = document.querySelectorAll('.ball');
+
+let targetX = 0;
+let targetY = 0;
+let currentX = 0;
+let currentY = 0;
 
 document.addEventListener('mousemove', (e) => {
-    const x = e.clientX / window.innerWidth - 0.5;
-    const y = e.clientY / window.innerHeight - 0.5;
+    targetX = (e.clientX / window.innerWidth - 0.5) * 300;
+    targetY = (e.clientY / window.innerHeight - 0.5) * 300;
 
-    balls.forEach((ball, index) => {
-        const speed = (index + 1) * 20;
 
-        // movement
-        ball.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-    });
 });
+
+function animate() {
+    currentX += (targetX - currentX) * 0.05;
+    currentY += (targetY - currentY) * 0.05;
+
+    container.style.transform = 
+        `translate(${currentX}px, ${currentY}px)`;
+
+    requestAnimationFrame(animate);
+}
+
+animate();
 
 const TOTAL = 60;
 
@@ -81,4 +92,20 @@ for (let i = 0; i < TOTAL; i++) {
     </div>
 
     `;
+
+    ball.style.top = Math.random() * 200 + "%";
+    ball.style.left = Math.random() * 200 + "%";
+
+    ball.addEventListener('click', () => {
+
+        document.querySelectorAll(".ball").forEach(b => {
+            b.classList.remove("active");
+            b.style.zIndex = 1;
+        });
+
+        ball.classList.add('active');
+        ball.style.zIndex = 100;
+    });
+
+    container.appendChild(ball);
 }
