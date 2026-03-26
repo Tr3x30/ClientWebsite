@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             name: "Putney's Auto Tech",
             desc: "Local auto repair shop supporting our team.",
-            img: "images/PUTNEYS.png",
+            img: "images/putneys_logo.png",
             link: "https://putneys.ca/"
         },
         {
