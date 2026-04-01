@@ -101,7 +101,6 @@ async function getCompetitions() {
 
     // --- Logic ---
     const current = Date.now();
-    console.log(worlds.time - current);
     if (team && team[0] && team[0].time > current) return team[0];
     if (team && team[1] && team[1].time > current) return team[1];
     if (provs && provs.time > current) return provs;
@@ -166,8 +165,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(EVENT);
 
     const eventName = document.getElementById("event-name");
-    eventName.textContent = EVENT.name.replaceAll("Event", "").replaceAll("ONT District", "Ontario");
+    eventName.textContent = EVENT.name.replaceAll("Event", "Competition").replaceAll("ONT District", "");
     resizeEventName();
+
+    console.log(EVENT.time);
 
     updateCountdown(EVENT.time);
 
