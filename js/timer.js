@@ -168,8 +168,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     eventName.textContent = EVENT.name.replaceAll("Event", "Competition").replaceAll("ONT District", "");
     resizeEventName();
 
-    console.log(EVENT.time);
-
     updateCountdown(EVENT.time);
 
     const timerInterval = setInterval(() => {
