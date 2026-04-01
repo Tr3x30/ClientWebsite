@@ -1,7 +1,6 @@
 <?php
 header("Content-Type: application/json");
 include './connect.php';
-sleep(3);
 function fail($message)
 {
     http_response_code(400);
