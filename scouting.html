@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Match Scouting Form</title>
+    <link rel="stylesheet" href="css/stylesheet_scouting.css">
+    <script src="js/scouting.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Match Scouting Form</h1>
+
+        <form id="scoutForm">
+            <div class="section">
+                <div class="grid">
+                    <div>
+                        <label for="matchNumber">Match #</label>
+                        <input type="number" id="matchNumber" name="matchNumber" />
+                    </div>
+                    <div>
+                        <label for="matchType">Match Type</label>
+                        <select id="matchType" name="matchType">
+                            <option value="qualification">Qualification</option>
+                            <option value="playoff">Playoff</option>
+                            <option value="practice">Practice</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="allianceColor">Alliance Colour</label>
+                        <select id="allianceColor" name="allianceColor">
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="grid">
+                    <div>
+                        <label for="predictWin">Predicted Winner</label>
+                        <select id="predictWin" name="predictWin">
+                            <option value="them">Them</option>
+                            <option value="opponent">Opponent</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="actualWin">Actual Winner</label>
+                        <select id="actualWin" name="actualWin">
+                            <option value="them">Them</option>
+                            <option value="opponent">Opponent</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="rankingPoints">Ranking Points</label>
+                        <input type="number" id="rankingPoints" name="rankingPoints" min="0" max="6" />
+                    </div>
+
+                    <div>
+                        <label for="opponents">Opponents</label>
+                        <input type="text" id="opponents" name="opponents" placeholder="e.g. 1114, 2056, 5406" />
+                    </div>
+
+                    <div>
+                        <label for="Number">Team #</label>
+                        <input type="number" id="Number" name="teams[0][number]" />
+                    </div>
+
+                    <div>
+                        <label for="Bump">Bump / Trench / Both</label>
+                        <select id="Bump" name="teams[0][path]">
+                            <option value="">Select</option>
+                            <option value="bump">Bump</option>
+                            <option value="trench">Trench</option>
+                            <option value="both">Both</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="Capabilities">Capabilities</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="teams[0][capabilities][]" value="preload" />
+                                Preload</label>
+                            <label><input type="checkbox" name="teams[0][capabilities][]" value="cycles" />
+                                Cycles</label>
+                            <label><input type="checkbox" name="teams[0][capabilities][]" value="intake" />
+                                Intake</label>
+                            <label><input type="checkbox" name="teams[0][capabilities][]" value="feed" /> Feed</label>
+                            <label><input type="checkbox" name="teams[0][capabilities][]" value="defended" />
+                                Defended</label>
+                            <label><input type="checkbox" name="teams[0][capabilities][]" value="climb" /> Climb</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="Disabled">Disabled?</label>
+                        <select id="Disabled" name="teams[0][disabled]">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="section">
+                        <label for="details">Details</label>
+                        <textarea id="details" name="details"></textarea>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
