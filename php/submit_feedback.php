@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli("localhost", "root", "", "team9062");
+$conn = new mysqli("localhost", "chengh65_local", "yrMll>%5", "chengh65_db");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
