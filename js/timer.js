@@ -1,112 +1,14 @@
 let cachedETag = null;
 let cachedData = null;
 
-async function tbaFetch(url, cacheKey) {
-    const etag = localStorage.getItem(cacheKey + "_etag");
-
-    const headers = {
-        "X-TBA-Auth-Key": "1z1rvTlo2S8iXFco9I8et09kOrln30gku4LnAa7gCVTSR5M0YpenZqKaelGzZo1L",
-        "accept": "application/json"
-    };
-
-    if (etag) headers["If-None-Match"] = etag;
-
-    const res = await fetch(url, { headers });
-
-    if (res.status === 304) {
-        console.log("Using cached data");
-        return null;
-    }
-
-    const data = await res.json();
-
-    localStorage.setItem(cacheKey + "_etag", res.headers.get("ETag"));
-
-    return data;
-}
-
-function toEpoch(dateStr, timezone) {
-    const date = new Date(
-        new Date(`${dateStr}T08:00:00`).toLocaleString("en-US", {
-            timeZone: timezone
-        })
-    );
-    return date.getTime();
-}
-
 async function getCompetitions() {
-    const year = new Date().getFullYear();
+    const res = await fetch('./php/get_competitions.php');
 
-    // 🔥 Start all requests immediately (no await yet)
-    const worldsPromise = tbaFetch(
-        `https://www.thebluealliance.com/api/v3/event/${year}cmptx`,
-        "events_worlds"
-    );
-
-    const provsPromise = tbaFetch(
-        `https://www.thebluealliance.com/api/v3/event/${year}oncmp`,
-        "events_provs"
-    );
-
-    const teamPromise = tbaFetch(
-        `https://www.thebluealliance.com/api/v3/team/frc9062/events/${year}/simple`,
-        "events_team"
-    );
-
-    const [worldsJSON, provsJSON, teamJSON] = await Promise.all([
-        worldsPromise,
-        provsPromise,
-        teamPromise
-    ]);
-
-    // --- Worlds ---
-    let worlds = null;
-    if (worldsJSON) {
-        worlds = {
-            date: worldsJSON.start_date,
-            name: "FRC Worlds",
-            time: toEpoch(worldsJSON.start_date, "America/Chicago")
-        };
-        localStorage.setItem("events_worlds_data", JSON.stringify(worlds));
-    } else {
-        worlds = JSON.parse(localStorage.getItem('events_worlds_data'));
+    if (!res.ok) {
+        throw new Error(`Request failed with status ${res.status}`);
     }
 
-    // --- Provs ---
-    let provs = null;
-    if (provsJSON) {
-        provs = {
-            date: provsJSON.start_date,
-            name: "Ontario Provincials",
-            time: toEpoch(provsJSON.start_date, "America/Toronto")
-        };
-        localStorage.setItem("events_provs_data", JSON.stringify(provs));
-    } else {
-        provs = JSON.parse(localStorage.getItem('events_provs_data'));
-    }
-
-    // --- Team ---
-    let team = null;
-    if (teamJSON) {
-        team = teamJSON.slice(0, 2).map(event => ({
-            date: event.start_date,
-            name: event.name,
-            time: toEpoch(event.start_date, "America/Toronto")
-        }));
-
-        localStorage.setItem("events_team_data", JSON.stringify(team));
-    } else {
-        team = JSON.parse(localStorage.getItem('events_team_data'));
-    }
-
-    // --- Logic ---
-    const current = Date.now();
-    if (team && team[0] && team[0].time > current) return team[0];
-    if (team && team[1] && team[1].time > current) return team[1];
-    if (provs && provs.time > current) return provs;
-    if (worlds && worlds.time > current) return worlds;
-
-    return null;
+    return await res.json();
 }
 
 function setTwoDigits(unitElement, value) {
@@ -159,26 +61,32 @@ function resizeEventName() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-    let EVENT = "9062 BUILD DAY";
+    try {
+        const eventData = await getCompetitions();
 
-    EVENT = await getCompetitions();
-    console.log(EVENT);
-
-    const eventName = document.getElementById("event-name");
-    eventName.textContent = EVENT.name.replaceAll("Event", "Competition").replaceAll("ONT District", "");
-    resizeEventName();
-
-    updateCountdown(EVENT.time);
-
-    const timerInterval = setInterval(() => {
-        updateCountdown(EVENT.time);
-
-        if (Date.now() >= EVENT.time) {
-            clearInterval(timerInterval);
+        if (!eventData || !eventData.name || !eventData.time) {
+            throw new Error("No event data available");
         }
-    }, 1000);
-});
 
+        const eventName = document.getElementById("event-name");
+        eventName.textContent = eventData.name
+            .replaceAll("Event", "Competition")
+            .replaceAll("ONT District", "");
+
+        resizeEventName();
+        updateCountdown(eventData.time);
+
+        const timerInterval = setInterval(() => {
+            updateCountdown(eventData.time);
+
+            if (Date.now() >= eventData.time) {
+                clearInterval(timerInterval);
+            }
+        }, 1000);
+    } catch (error) {
+        console.error(error);
+    }
+});
 window.addEventListener('resize', () => {
     resizeEventName();
 });
