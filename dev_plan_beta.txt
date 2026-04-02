@@ -1,0 +1,52 @@
+HIGH LEVEL ROLES:
+Trevor  - Overall layout and design
+Ali     - ?
+Harris  - Team coordination & task delegation
+Spencer - ?
+
+================================================================================
+================================================================================
+SPECIFIC PROGRAMMING TASKS:
+================================================================================
+Trevor
+===================
+Language Breakdown:
+HTML        -   All 4 components use HTML: divs, forms, buttons, etc.
+                    Header HTML built to display above any page content
+CSS         -   Isolated CSS file for Header; Individual CSS files for each page
+                    Global CSS file for basic margin removal, etc.
+JavaScript  -   Header scripting to resize dynamically;
+                    Landing page uses JS to update event timer
+                    Scouting page uses JS to submit form
+PHP         -   Landing page uses PHP to safely call API
+                    Scouting page uses PHP to submit scouting form data to SQL
+                    connect.php made to connect to matches database
+SQL         -   SQL Database uses 2 tables to store 12 columns of data
+                    Database stores data for each matches
+                    Stores what matches each team played in
+
+===============
+Page Breakdown:
+Header
+    Responsive design with links to main pages (robot, members, sponsors, etc.)
+    Resizes dynamically using JS
+Landing Page
+    Landing page with introduction to the team
+    countdown timer to next event using TBA api (private)
+    accessed asycnchronously using PHP to protect the API key
+Robots Page
+    Basic HTML/CSS page. Uses media tags to adjust to mobile site version
+    Details of 9062 robot from 2025 season
+Competition Scouting Page
+	Basic HTML/JS form with PHP/SQL backend
+    Input performance of robots at First Robotics Competitions events
+    PHP backend will load data into database to help make drafting decisions
+
+================================================================================
+Ali
+
+================================================================================
+Harris
+
+================================================================================
+Spencer
