@@ -10,12 +10,13 @@ html {
     background-image: url("../images/20230420_164510000_iOS.jpg");
     background-size: cover;
     background-position: center;
-    height: 400px;
+    min-height: 60vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 
 .bannerText h1 {
     color: white;
@@ -34,7 +35,7 @@ html {
 }
 
 .video{
-    width:50%;
+    flex: 1 1 500px;
 }
 
 .video iframe{
@@ -43,8 +44,8 @@ html {
 }
 
 .videoText{
-    width: 40%;
-    min-width: 500px;
+    flex: 1 1 500px;
+    min-width: 0;
 }
 
 .videoText h2{
@@ -55,4 +56,16 @@ html {
 .videoText p{
     font-size: 18px;
     line-height: 1.6;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 768px){
+    #videoSection{
+        padding: 30px;
+    }
+
+    .bannerText h1{
+        font-size: 36px;
+        text-align: center;
+    }
 }

@@ -48,5 +48,59 @@ Ali
 ================================================================================
 Harris
 
+Summary: I was responsible for designing, implementing, 
+            and maintaining multiple technical components of the website, 
+            including layout design, responsiveness, database interaction, and user functionality.
+
+===================
+Language Breakdown:
+HTML        -   
+            •   Designed the overall structure and layout of the website.
+            •   Created individual pages including Sponsors, Location, Original Page, and Feedback Page.
+            •   Each page was customized with different layouts to clearly introduce sponsors, locations, and client concepts.
+            •   Organized content to ensure readability and logical navigation throughout the website.
+
+CSS         -  
+            •    Developed consistent header and footer layouts shared across all pages.
+            •    Implemented responsive design to support different screen sizes.
+            •    For example, when screen width becomes smaller than 500px, 
+            •    footer columns automatically adjust from vertical layout to horizontal layout for better mobile viewing.
+
+JavaScript  -   
+            •   Implemented reusable components such as shared headers using iframe integration.
+            •   Allowed global header updates without modifying every individual page manually.
+            •   Improved efficiency and consistency across the entire website.
+
+PHP         -  
+            •   Developed backend functionality to process user feedback submissions.
+            •   Created submit_feedback.php to receive user comments and ratings.
+            •   Built connect.php to establish database connections between web pages and the server database (Macid_db).
+
+SQL         -   
+            •   Designed and managed the database structure.
+            •   Created tables to store user star ratings and written feedback.
+            •   Stored usernames and comments to help analyze user opinions and improve the website in the future.
+
+===============
+Page Breakdown:
+Location page:
+            •   Introduces the client team's location.
+            •   Integrated Google Maps using an iframe for interactive navigation.
+
+Feedback page:
+            •   Implemented a five-star rating system and comment submission form.
+            •   User feedback is stored in the database using PHP and SQL.
+            •   Enables collection of user opinions for future website improvements.
+
+orginal page:
+            •   Displays event photos and background information about the robotics team.
+            •   Embedded hidden clickable links directing users to the team's YouTube channel.
+            •   Includes written content explaining the purpose and history of the robotics team.
+
+Sponsor page:
+            •   Developed according to client requirements.
+            •   Displays and introduces all sponsors supporting Team 9062.
+            •   Organized sponsor information in a clear and visually structured format.
+
 ================================================================================
 Spencer
