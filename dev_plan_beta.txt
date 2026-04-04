@@ -1,8 +1,8 @@
-HIGH LEVEL ROLES:
+HIGH LEVEL ROLES (in addition to programming):
 Trevor  - Overall layout and design
-Ali     - ?
-Harris  - Team coordination & task delegation
-Spencer - ?
+Ali     - 
+Harris  - 
+Spencer - 
 
 ================================================================================
 ================================================================================
