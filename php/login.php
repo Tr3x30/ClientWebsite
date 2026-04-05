@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "bailes15_local", "f+HbL.Gf", "bailes15_db");
+include 'connect.php';
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
