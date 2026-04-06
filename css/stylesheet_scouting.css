@@ -10,8 +10,13 @@ h1 {
     color: #0066B3;
 }
 
+select {
+    cursor: pointer;
+}
+
 input {
     accent-color: #961B41;
+    cursor: pointer;
 }
 
 input[type=number] {
@@ -60,6 +65,7 @@ button {
     background-color: #961B41;
     color: white;
     border: none;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
