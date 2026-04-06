@@ -47,7 +47,7 @@ Ali
 
 ================================================================================
 Harris
-
+ 
 Summary: I was responsible for designing, implementing, 
             and maintaining multiple technical components of the website, 
             including layout design, responsiveness, database interaction, and user functionality.
