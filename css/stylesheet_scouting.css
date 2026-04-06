@@ -1,11 +1,33 @@
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #961B41;
+}
+
+.section>h3 {
+    color: #0066B3;
+}
+
+input {
+    accent-color: #961B41;
+}
+
+input[type=number] {
+    appearance: textfield;
+}
+
+.number-arrowless::-webkit-outer-spin-button,
+.number-arrowless::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 500px;
     margin: auto;
+    padding: 2% 0;
 }
 
 .section {
@@ -35,4 +57,14 @@ label {
 
 button {
     padding: 8px 12px;
+    background-color: #961B41;
+    color: white;
+    border: none;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: auto;
+        padding: 2% 10%;
+    }
 }
