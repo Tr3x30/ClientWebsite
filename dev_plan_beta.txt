@@ -1,8 +1,8 @@
-HIGH LEVEL ROLES:
+HIGH LEVEL ROLES (in addition to programming):
 Trevor  - Overall layout and design
-Ali     - ?
+Ali     - Front-end page development and initial database setup
 Harris  - Team coordination & task delegation
-Spencer - ?
+Spencer - 
 
 ================================================================================
 ================================================================================
@@ -44,6 +44,44 @@ Competition Scouting Page
 
 ================================================================================
 Ali
+===================
+Summary: I contributed mainly to front-end page development and initial database setup. 
+I worked on building and styling specific pages and helped structure the database files used in the project.
+
+===================
+Language Breakdown:
+
+HTML        -  
+            •   Worked on the Member page and contributed to structuring page content.
+            •   Helped organize layout elements for better readability and navigation.
+
+CSS         -  
+            •   Styled individual pages and adjusted layouts.
+            •   Ensured page-specific styles do not interfere with shared header/footer components.
+
+JavaScript  -  
+            •   Worked with basic JavaScript functionality already used in the project.
+            •   Helped ensure page elements and interactions behaved properly when integrated with the rest of the site.
+
+PHP         -  
+            •   Worked with existing PHP files (login, feedback, connection) to understand how data flows between frontend and backend.
+            •   Helped ensure forms connect properly to backend processing.
+
+SQL         -  
+            •   Created and edited schema.sql and seed.sql.
+            •   Defined tables such as users and members.
+            •   Inserted sample data for testing database functionality.
+
+===============
+Page Breakdown:
+
+Member page:
+            •   Displays team members and their roles.
+            •   Structured layout to present information clearly.
+
+General contribution:
+            •   Helped integrate front-end pages with backend/database structure.
+            •   Assisted in preparing the project for team integration.
 
 ================================================================================
 Harris

@@ -1,33 +1,43 @@
 <?php
+session_start();
+require_once 'connect_spencer.php';
 
-$conn = new mysqli("localhost", "root", "", "team9062");
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    die('Invalid request method');
 }
 
-if (!isset($_POST['rating']) || !isset($_POST['feedback'])) {
-    die("Invalid form submission");
+if (!isset($_POST['username'], $_POST['password'])) {
+    die('Invalid form submission');
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
+$username = trim($_POST['username']);
+$password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id, password_hash FROM users WHERE username = ?");
-    $stmt->bind_param("s", $user);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($row = $result->fetch_assoc()) {
-        if (password_verify($pass, $row['password_hash'])) {
-            $_SESSION['user_id'] = $row['id'];
-            header("Location: dashboard.php");
-        } else {
-            echo "Invalid password.";
-        }
-    } else {
-        echo "User not found.";
+if ($username === '' || $password === '') {
+    die('Username and password are required');
+}
+
+$stmt = $pdo->prepare("SELECT id, password_hash FROM users WHERE username = ?");
+$stmt->execute([$username]);
+$row = $stmt->fetch();
+
+if ($row) {
+    if (password_verify($password, $row['password_hash'])) {
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['username'] = $username;
     }
-    $stmt->close();
+
+    header("Location: ../index.html");
+    exit;
+} else {
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $insertStmt = $pdo->prepare("INSERT INTO users (username, password_hash) VALUES (?, ?)");
+    $insertStmt->execute([$username, $hashedPassword]);
+
+    $_SESSION['user_id'] = $pdo->lastInsertId();
+    $_SESSION['username'] = $username;
+
+    header("Location: ../index.html");
+    exit;
 }

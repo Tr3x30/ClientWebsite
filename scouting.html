@@ -31,10 +31,11 @@
 
         <form id="scoutForm">
             <div class="section">
+                <h3>Match Info</h3>
                 <div class="grid">
                     <div>
                         <label for="matchNumber">Match #</label>
-                        <input type="number" id="matchNumber" name="matchNumber" />
+                        <input class="number-arrowless" type="number" id="matchNumber" name="matchNumber" />
                     </div>
                     <div>
                         <label for="matchType">Match Type</label>
@@ -55,6 +56,7 @@
             </div>
 
             <div class="section">
+                <h3>Game Info</h3>
                 <div class="grid">
                     <div>
                         <label for="predictWin">Predicted Winner</label>
@@ -84,7 +86,7 @@
 
                     <div>
                         <label for="Number">Team #</label>
-                        <input type="number" id="Number" name="teams[0][number]" />
+                        <input class="number-arrowless" type="number" id="Number" name="teams[0][number]" />
                     </div>
 
                     <div>
@@ -98,7 +100,7 @@
                     </div>
 
                     <div>
-                        <label for="Capabilities">Capabilities</label>
+                        <label Capabilities>Capabilities</label>
                         <div class="checkbox-group">
                             <label><input type="checkbox" name="teams[0][capabilities][]" value="preload" />
                                 Preload</label>
@@ -160,7 +162,7 @@
         <div class="column1">
             <h3>Contact:</h3>
             <p><a href="mailto:chenghongkiu6@gmail.com">Email:</a></p>
-            <p>Support</p>
+            <p><a href="https://www.example.com/">Support</a></p>
             <p><a href="feedback.html">Feedback</a></p>
         </div>
     </div>
