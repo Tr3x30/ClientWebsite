@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+}
+
+#animationCanvas {
+    background-color: black;
+}
+
+#bottom{
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
