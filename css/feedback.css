@@ -1,0 +1,82 @@
+/* ---------- PAGE BACKGROUND ---------- */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    margin: 0;
+}
+
+/* ---------- FORM CARD ---------- */
+form {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    width: 400px;
+    text-align: center;
+}
+
+/* ---------- TITLE ---------- */
+h2 {
+    position: absolute;
+    top: 60px;
+    font-size: 32px;
+    color: #333;
+}
+
+/* ---------- LABELS ---------- */
+label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ---------- RADIO BUTTONS ---------- */
+input[type="radio"] {
+    transform: scale(1.5);
+    margin: 10px;
+}
+
+/* ---------- TEXTAREA ---------- */
+textarea {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+/* ---------- SUBMIT BUTTON ---------- */
+button {
+    width: 100%;
+    padding: 15px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    background-color: red;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* hover effect */
+button:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+}
+
+/* click effect */
+button:active {
+    transform: scale(0.95);
+}

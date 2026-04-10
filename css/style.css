@@ -2,12 +2,40 @@ body {
     text-align: center;
 }
 
-#animationCanvas {
-    background-color: black;
+/* container */
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 20px;
 }
 
-#bottom{
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 40px;
+/* canvas */
+#animationCanvas {
+    background-color: black;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+/* text */
+.game-text {
+    max-width: 300px;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* ---------- RESPONSIVE PART ---------- */
+/* when screen smaller */
+@media (max-width: 900px) {
+    .game-container {
+        flex-direction: column;
+    }
+
+    .game-text {
+        text-align: center;
+    }
 }
