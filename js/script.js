@@ -1,28 +1,17 @@
 window.addEventListener("load", () => {
 
-    /* =========================
-       CANVAS SETUP
-    ========================= */
-
     const canvas = document.getElementById("animationCanvas");
     const ctx = canvas.getContext("2d");
 
     function resizeCanvas() {
         canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientWidth * 0.5;
+        canvas.height = 400;
     }
 
     resizeCanvas();
-    window.addEventListener("resize", () => {
-        resizeCanvas();
-        createBalls();
-        texts = createTexts();
-    });
+    window.addEventListener("resize", resizeCanvas);
 
-
-    /* =========================
-       BALL CLASS
-    ========================= */
+    /* ================= BALL ================= */
 
     class Ball {
         constructor(x, y, xSpeed, ySpeed) {
@@ -50,10 +39,7 @@ window.addEventListener("load", () => {
         }
     }
 
-
-    /* =========================
-       TEXT CLASS
-    ========================= */
+    /* ================= TEXT ================= */
 
     class Text {
         constructor(text, color, x, y) {
@@ -71,19 +57,13 @@ window.addEventListener("load", () => {
         }
     }
 
-
-    /* =========================
-       RANDOM FUNCTION
-    ========================= */
+    /* ================= RANDOM ================= */
 
     function randR(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-
-    /* =========================
-       BALLS
-    ========================= */
+    /* ================= BALLS ================= */
 
     let balls = [];
 
@@ -104,12 +84,7 @@ window.addEventListener("load", () => {
 
     createBalls();
 
-
-    /* =========================
-       TEXT (RESPONSIVE)
-    ========================= */
-
-    let texts = [];
+    /* ================= TEXT ================= */
 
     function createTexts() {
         return [
@@ -120,20 +95,16 @@ window.addEventListener("load", () => {
         ];
     }
 
-    texts = createTexts();
+    let texts = createTexts();
 
-
-    /* =========================
-       IMAGE
-    ========================= */
+    /* ================= IMAGE ================= */
 
     const img = new Image();
     img.src = "images/logo.jpg";
+    let imgLoaded = false;
+    img.onload = () => imgLoaded = true;
 
-
-    /* =========================
-       MOUSE CONTROL
-    ========================= */
+    /* ================= MOUSE ================= */
 
     let mouseX = -100;
     let mouseY = -100;
@@ -145,26 +116,23 @@ window.addEventListener("load", () => {
         mouseY = e.clientY - rect.top;
     });
 
-
-    /* =========================
-       ANIMATION LOOP
-    ========================= */
+    /* ================= ANIMATION ================= */
 
     function updateAnimation() {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // draw logo
-        ctx.drawImage(img, 25, 25, 75, 75);
+        if (imgLoaded) {
+            ctx.drawImage(img, 25, 25, 75, 75);
+        }
 
         for (let ball of balls) {
 
-            /* mouse interaction */
             const dx = ball.x - mouseX;
             const dy = ball.y - mouseY;
             const dist = Math.sqrt(dx * dx + dy * dy);
 
-            if (dist < mouseRadius + ball.radius) {
+            if (dist < mouseRadius + ball.radius && dist > 0) {
                 const nx = dx / dist;
                 const ny = dy / dist;
 
@@ -174,7 +142,6 @@ window.addEventListener("load", () => {
                 ball.ySpeed -= 2 * dot * ny;
             }
 
-            /* wall bounce */
             if (ball.x <= ball.radius || ball.x >= canvas.width - ball.radius)
                 ball.xSpeed *= -1;
 
