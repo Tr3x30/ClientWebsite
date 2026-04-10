@@ -1,0 +1,53 @@
+#pageSelector {
+    padding: 2%;
+    display: flex;
+    width: 80vw;
+    align-items: stretch;
+    text-align: center;
+    gap: 1vw;
+    margin: auto;
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 1vw 0;
+    flex: 1 1 150px;
+    font-size: 2vw;
+    flex-grow: 1;
+    background-color: lightgray;
+    cursor: pointer;
+    border-radius: 15px 15px 0 0;
+}
+
+h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 3vw;
+    text-align: center;
+}
+
+.active {
+    background-color: #0066B3;
+}
+
+details {
+    width: 86%;
+    text-align: center;
+    margin: auto;
+    padding: 2%;
+}
+
+.mainSection {
+    background-color: #0066B3;
+}
+
+.subSection {
+    background-color: lightgray;
+    margin: 2%;
+}
+
+p {
+    text-align: justify;
+}

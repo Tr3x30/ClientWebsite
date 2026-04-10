@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Plan</title>
+    <link rel="stylesheet" href="../css/globalStyle.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/timer.css">
+    <link rel="stylesheet" href="devstyle.css">
+    <script src="../js/header.js"></script>
+    <script src="devscript.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <a href="index.html" id="logo">
+            <img src="../images/9062_logo.jpg" alt="9062 Critical Circuits Logo">
+        </a>
+        <div id="flexnav">
+            <a href="../orginal.html">Orginal Intention</a>
+            <a href="../Robot.html">Robot</a>
+            <a href="../Member.html">Member</a>
+            <a href="../Sponsors.html">Sponsors</a>
+            <a href="../Location.html">Location</a>
+        </div>
+        <p>"Try More.<br>Try Smarter"</p>
+    </div>
+
+    <div id="content">
+        <div id="pageSelector">
+            <div class="page General active">
+                <h1>General</h1>
+            </div>
+            <div class="page Trevor">
+                <h1>Trevor</h1>
+            </div>
+            <div class="page Harris">
+                <h1>Harris</h1>
+            </div>
+            <div class="page Ali">
+                <h1>Ali</h1>
+            </div>
+            <div class="page Spencer">
+                <h1>Spencer</h1>
+            </div>
+        </div>
+
+        <div class="General active">
+            <!-- <p>"we have decided to build a website"</p> -->
+        </div>
+
+        <div class="Trevor">
+            <details open class="mainSection">
+                <summary>PAGE BREAKDOWN</summary>
+                <details class="subSection">
+                    <summary>Page Headers</summary>
+                    <p>HTML, CSS, JS</p>
+                    <p>I created the page headers to be responsive to screen width, which promotes a consistent UX,
+                        where users can clearly tell which pages are on our website, and which are external. The header
+                        links to the main pages on the site (robot, members, sponsors, etc.) Using JavaScript, the
+                        header utilizes vertical space to allow for larger buttons on smaller screens, while keeping the
+                        client logo, navigation buttons, and slogan visible.</p>
+                </details>
+                <details class="subSection">
+                    <summary>Landing Page</summary>
+                    <p>HTML, CSS, JS, PHP</p>
+                    <p>The goal of the entire site, and by extension the landing page, was to closely resemble the
+                        website for team <a href="2056.ca">2056</a>. With that in mind, I made sure keep the design
+                        simple, using a basic CSS styling with flex grids for a mobile friendly experience. The part of
+                        this page I am most proud of myself for is the countdown timer. By using AJAX practices, I have
+                        the page send an asynchronous request to a PHP backend server, including the last known timings
+                        for events. The PHP server then pings 3 different API endpoints immediately before afterwards
+                        waiting for all 3 responses. The PHP backend can interpret the response from each endpoint,
+                        returning the data (if changed) to the front-end. If the data is unchanged, localStorage is used
+                        to get the timings.</p>
+                </details>
+                <details class="subSection">
+                    <summary>Robots Page</summary>
+                    <p>HTML, CSS</p>
+                    <p>
+                        The robots page is another simple page, with no fancy tricks going on. I made sure to use flex
+                        boxes again to allow for a mobile friendly experience, and filled the page with details of what
+                        the robot accomplished in 2025. Due to the clients wishes and the ongoing 2026 season, no
+                        details were added about the teams performance this year, to help them succeed at the provincial
+                        competition later this year.
+                    </p>
+                </details>
+                <details class="subSection">
+                    <summary>Competition Scouting Page</summary>
+                    <p>HTML, CSS, JS, PHP, SQL</p>
+                    <p>
+                        This is another page I am really proud of. I wanted to keep the page looking very simple and
+                        efficient, as it would be used almost exclusivey during chaotic competitions. The page only has
+                        a JS powered form on it, where users can enter details about robots they are watching at a
+                        competition. This form data is then sent to PHP, where the data is validated, cleaned, and moved
+                        to an SQL database. The database has a table for how each team performed in each match, and
+                        another table that simply keeps track of what match IDs correlate to each team, for quicker
+                        lookup and sorting by team captains when making decisions in the playoff stage of each
+                        competition. This was an extra feature not requested by the client, but as someone who was in
+                        charge of scouting for my own highschools team, I wish I had something like this to help us.
+                    </p>
+                </details>
+            </details>
+
+            <details open class="mainSection">
+                <summary>LANGUAGE BREAKDOWN</summary>
+                <details class="subSection">
+                    <summary>HTML</summary>
+                    <p>Header, Landing, Robot, Scouting</p>
+                    <p>I implemented tags when possible, including divs, forms,
+                        buttons, and details tags. When creating the HTML for the header, I took special care to make
+                        sure that it wouldn't cause conflicts with other content below it in the page. I did my best to
+                        choose id and class names that are descriptive and easily identifiable when looking at either
+                        the HTML, CSS, or JavaScript code that uses any of the tags.</p>
+                </details>
+                <details class="subSection">
+                    <summary>CSS</summary>
+                    <p>Header, Landing, Robot, Scouting</p>
+                    <p>When creating the stylesheets for the website, I made sure to isolate as much of the styling as
+                        possible to not conflict with the stylingsheets being written by my team. I created a
+                        gloablStyle sheet, which ensures that y-overflow can be scrolled to, while eliminating the
+                        default margin around the body. I used a lot of flex boxes to allow for a mobile friendly
+                        experience, as well as many media tags to ensure that content could be resized or rearranged to
+                        be more readable on a mobile device. </p>
+                </details>
+                <details class="subSection">
+                    <summary>JavaScript</summary>
+                    <p>Header, Landing, Scouting</p>
+                    <p>Each component containing JavaScript has its own individual file, to promote seperation of
+                        concerns. The header JavaScript simply checks for the height of the button div, and then sets
+                        the image to the same height. Both of the scouting and timer JavaScript files utilize AJAX to
+                        send asynchronous commands to the PHP backend. The JS implemented for the timer utilizes
+                        localStorage to cache API results, which allows for faster requests, as if the response content
+                        hasn't changed, the API server can simply return a short HTML code, instead of sending all of
+                        the data for the request. The scouting page doesn't validate user input on the front-end, as
+                        many of the options are already locked down by HTML input types, however it does receive
+                        verification from the server that the contents are OK (not malicious), and displays a brief
+                        success or failure message to the user, before clearing the form for another submission.</p>
+                </details>
+                <details class="subSection">
+                    <summary>PHP</summary>
+                    <p>Landing, Scouting</p>
+                    <p></p>
+                </details>
+                <details class="subSection">
+                    <summary>SQL</summary>
+                    <p>All 4 components use HTML: divs, forms, buttons, etc.
+                        Header HTML built to display above any page content</p>
+                </details>
+            </details>
+
+        </div>
+    </div>
+
+    <div class="Harris">
+
+    </div>
+    <div class="Ali">
+
+    </div>
+    <div class="Spencer">
+
+    </div>
+    <div class="Trevor">
+
+    </div>
+    </div>
+
+
+    <div id="footer">
+        <div class="column1">
+            <h3>Social:</h3>
+
+            <a href="https://www.youtube.com/@CriticalCircuits" target="_blank">
+                <img src="../images/youtube_image.png" alt="YouTube Logo" class="icon"> Youtube
+            </a>
+
+            <a href="https://www.thebluealliance.com/team/9062" target="_blank">
+                <img src="../images/Screenshot 2026-03-11 144539.png" alt="TheBlueAlliance Logo" class="icon">Blue
+                Alliance
+            </a>
+
+            <a href="https://www.instagram.com/9062photographer" target="_blank">
+                <img src="../images/instagram_icon.png" alt="Instagram Logo" class="icon"> Instagram
+            </a>
+
+        </div>
+
+        <div class="column1">
+            <h3>Connect:</h3>
+            <p><a href="../login.html">Login</a></p>
+            <p><a href="../scouting.html">Scouting</a></p>
+        </div>
+
+        <div class="column1">
+            <h3>Contact:</h3>
+            <p><a href="mailto:chenghongkiu6@gmail.com">Email</a></p>
+            <p><a href="https://www.example.com/">Support</a></p>
+            <p><a href="feedback.html">Feedback</a></p>
+        </div>
+    </div>
+
+</body>
+
+</html>
