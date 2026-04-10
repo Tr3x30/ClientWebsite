@@ -1,165 +1,163 @@
-class Ball {
-    constructor(x, y, xSpeed, ySpeed) {
-        this.x = x;
-        this.y = y;
-        this.xSpeed = xSpeed;
-        this.ySpeed = ySpeed;
-        this.red = 255;
-        this.green = 0;
-        this.blue = 0;
-        this.radius = 5;
+window.addEventListener("load", () => {
+
+    const canvas = document.getElementById("animationCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+        canvas.width = canvas.clientWidth;
+        canvas.height = 400;
     }
 
-    setColor(red, green, blue) {
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    /* ================= BALL ================= */
+
+    class Ball {
+        constructor(x, y, xSpeed, ySpeed) {
+            this.x = x;
+            this.y = y;
+            this.xSpeed = xSpeed;
+            this.ySpeed = ySpeed;
+            this.radius = 5;
+
+            this.red = 255;
+            this.green = 0;
+            this.blue = 0;
+        }
+
+        move() {
+            this.x += this.xSpeed;
+            this.y += this.ySpeed;
+        }
+
+        draw() {
+            ctx.fillStyle = `rgb(${this.red},${this.green},${this.blue})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
     }
 
-    moveOneStep() {
-        this.x += this.xSpeed;
-        this.y += this.ySpeed;
+    /* ================= TEXT ================= */
+
+    class Text {
+        constructor(text, color, x, y) {
+            this.text = text;
+            this.color = color;
+            this.x = x;
+            this.y = y;
+        }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.font = "bold 48px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText(this.text, this.x, this.y);
+        }
     }
 
-    draw(ctx) {
-        ctx.fillStyle = "rgb(" + this.red + "," + this.green + "," + this.blue + ")";
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.fill();
-    }
-}
+    /* ================= RANDOM ================= */
 
-class Text {
-    constructor(text, color, x, y) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.text = text;
+    function randR(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    drawText(ctx) {
-        ctx.fillStyle = this.color;
-        ctx.font = "bold 48px Arial";
-        ctx.textAlign = "center";
-        ctx.fillText(this.text, this.x, this.y);
+    /* ================= BALLS ================= */
+
+    let balls = [];
+
+    function createBalls() {
+        balls = [];
+
+        for (let i = 0; i < 250; i++) {
+            balls.push(
+                new Ball(
+                    randR(20, canvas.width - 20),
+                    randR(20, canvas.height - 20),
+                    randR(-10, 10) / 10,
+                    randR(-10, 10) / 10
+                )
+            );
+        }
     }
-}
 
-function randR(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+    createBalls();
 
-// Following best practices, it's all inside a window load event
-window.addEventListener("load", function (event) {
+    /* ================= TEXT ================= */
+
+    function createTexts() {
+        return [
+            new Text("9062", "#333333", canvas.width / 2 + 2, 53),
+            new Text("Critical Circuits", "#333333", canvas.width / 2 + 2, 103),
+            new Text("9062", "#8888FF", canvas.width / 2, 50),
+            new Text("Critical Circuits", "#8888FF", canvas.width / 2, 100)
+        ];
+    }
+
+    let texts = createTexts();
+
+    /* ================= IMAGE ================= */
+
+    const img = new Image();
+    img.src = "images/logo.jpg";
+    let imgLoaded = false;
+    img.onload = () => imgLoaded = true;
+
+    /* ================= MOUSE ================= */
+
+    let mouseX = -100;
+    let mouseY = -100;
     const mouseRadius = 50;
-    let mouseX = -10;
-    let mouseY = -10;
 
-
-
-    // Define Balls
-    let balls = []
-    for (let i = 0; i < 500; i++) {
-        balls[i] = new Ball(
-            randR(50, 750),
-            randR(25, 375),
-            randR(-10, 10) / 10,
-            randR(-10, 10) / 10
-        );
-    }
-
-    // Define Text
-    let textBoxes = []
-    textBoxes.push(
-        new Text("9062", "#333333", 403, 53)
-    );
-    textBoxes.push(
-        new Text("Critical Circuits", "#333333", 403, 103)
-    );
-    textBoxes.push(
-        new Text("9062", "#8888FF", 400, 50)
-    );
-    textBoxes.push(
-        new Text("Critical Circuits", "#8888FF", 400, 100)
-    );
-
-    // Define Image
-    let img = new Image();
-    img.src = 'images/logo.jpg';
-
-    let imageData = {
-        'image': img,
-        'x': 25,
-        'y': 25,
-        'w': 75,
-        'h': 75
-    };
-
-    let timerId;
-
-    const c = document.getElementById("animationCanvas");
-    const ctx = c.getContext("2d");
-
-    c.addEventListener("mousemove", (e) => {
-        const r = c.getBoundingClientRect();
-        mouseX = e.clientX - r.left;
-        mouseY = e.clientY - r.top;
+    canvas.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
     });
 
-    function startAnimation() {
-        timerId = setInterval(updateAnimation, 16);
-        console.log("Animation Started")
-    }
+    /* ================= ANIMATION ================= */
 
     function updateAnimation() {
-        ctx.clearRect(0, 0, c.width, c.height);
 
-        ctx.drawImage(
-            imageData['image'], imageData['x'], imageData['y'],
-            imageData['w'], imageData['h']);
-        for (const ball of balls) {
-            // ChatGPT helped with the logic for mouse circle bounces
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (imgLoaded) {
+            ctx.drawImage(img, 25, 25, 75, 75);
+        }
+
+        for (let ball of balls) {
+
             const dx = ball.x - mouseX;
             const dy = ball.y - mouseY;
-            const minDist = ball.radius + mouseRadius;
-            const dist2 = dx * dx + dy * dy;
+            const dist = Math.sqrt(dx * dx + dy * dy);
 
-            if (dist2 < minDist * minDist) {
-                const dist = Math.sqrt(dist2) || 0.0001;
+            if (dist < mouseRadius + ball.radius && dist > 0) {
                 const nx = dx / dist;
                 const ny = dy / dist;
 
-                // reflect velocity across the normal: v' = v - 2*(v·n)*n
                 const dot = ball.xSpeed * nx + ball.ySpeed * ny;
-                ball.xSpeed = ball.xSpeed - 2 * dot * nx;
-                ball.ySpeed = ball.ySpeed - 2 * dot * ny;
 
-                // push it out so it doesn't stick inside the radius
-                const overlap = minDist - dist;
-                ball.x += nx * overlap;
-                ball.y += ny * overlap;
+                ball.xSpeed -= 2 * dot * nx;
+                ball.ySpeed -= 2 * dot * ny;
             }
 
-            if (ball.x >= c.width - ball.radius || ball.x <= 0 + ball.radius) {
+            if (ball.x <= ball.radius || ball.x >= canvas.width - ball.radius)
                 ball.xSpeed *= -1;
-            }
 
-            if (ball.y >= c.height - ball.radius || ball.y <= 0 + ball.radius) {
+            if (ball.y <= ball.radius || ball.y >= canvas.height - ball.radius)
                 ball.ySpeed *= -1;
-            }
 
-            ball.moveOneStep();
-            ball.draw(ctx);
+            ball.move();
+            ball.draw();
         }
 
-        for (textObject of textBoxes) {
-            textObject.drawText(ctx);
+        for (let t of texts) {
+            t.draw();
         }
+
+        requestAnimationFrame(updateAnimation);
     }
 
-    // Start things up!
-    startAnimation();
+    updateAnimation();
 });
