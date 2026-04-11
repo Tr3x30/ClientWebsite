@@ -16,7 +16,7 @@
 
 <body>
     <div id="header">
-        <a href="index.html" id="logo">
+        <a href="../index.html" id="logo">
             <img src="../images/9062_logo.jpg" alt="9062 Critical Circuits Logo">
         </a>
         <div id="flexnav">
@@ -29,130 +29,231 @@
         <p>"Try More.<br>Try Smarter"</p>
     </div>
 
-    <div id="content">
-        <div id="pageSelector">
-            <div class="page General active">
-                <h1>General</h1>
-            </div>
-            <div class="page Trevor">
-                <h1>Trevor</h1>
-            </div>
-            <div class="page Harris">
-                <h1>Harris</h1>
-            </div>
-            <div class="page Ali">
-                <h1>Ali</h1>
-            </div>
-            <div class="page Spencer">
-                <h1>Spencer</h1>
-            </div>
+    <div id="pageSelector">
+        <div class="page active" data-target="General">
+            <h1>General</h1>
         </div>
-
-        <div class="General active">
-            <!-- <p>"we have decided to build a website"</p> -->
+        <div class="page" data-target="Trevor">
+            <h1>Trevor</h1>
         </div>
+        <div class="page" data-target="Harris">
+            <h1>Harris</h1>
+        </div>
+        <div class="page" data-target="Ali">
+            <h1>Ali</h1>
+        </div>
+        <div class="page" data-target="Spencer">
+            <h1>Spencer</h1>
+        </div>
+    </div>
 
-        <div class="Trevor">
-            <details open class="mainSection">
-                <summary>PAGE BREAKDOWN</summary>
-                <details class="subSection">
-                    <summary>Page Headers</summary>
-                    <p>HTML, CSS, JS</p>
-                    <p>I created the page headers to be responsive to screen width, which promotes a consistent UX,
-                        where users can clearly tell which pages are on our website, and which are external. The header
-                        links to the main pages on the site (robot, members, sponsors, etc.) Using JavaScript, the
-                        header utilizes vertical space to allow for larger buttons on smaller screens, while keeping the
-                        client logo, navigation buttons, and slogan visible.</p>
-                </details>
-                <details class="subSection">
-                    <summary>Landing Page</summary>
-                    <p>HTML, CSS, JS, PHP</p>
-                    <p>The goal of the entire site, and by extension the landing page, was to closely resemble the
-                        website for team <a href="2056.ca">2056</a>. With that in mind, I made sure keep the design
-                        simple, using a basic CSS styling with flex grids for a mobile friendly experience. The part of
-                        this page I am most proud of myself for is the countdown timer. By using AJAX practices, I have
-                        the page send an asynchronous request to a PHP backend server, including the last known timings
-                        for events. The PHP server then pings 3 different API endpoints immediately before afterwards
-                        waiting for all 3 responses. The PHP backend can interpret the response from each endpoint,
-                        returning the data (if changed) to the front-end. If the data is unchanged, localStorage is used
-                        to get the timings.</p>
-                </details>
-                <details class="subSection">
-                    <summary>Robots Page</summary>
-                    <p>HTML, CSS</p>
-                    <p>
-                        The robots page is another simple page, with no fancy tricks going on. I made sure to use flex
-                        boxes again to allow for a mobile friendly experience, and filled the page with details of what
-                        the robot accomplished in 2025. Due to the clients wishes and the ongoing 2026 season, no
-                        details were added about the teams performance this year, to help them succeed at the provincial
-                        competition later this year.
-                    </p>
-                </details>
-                <details class="subSection">
-                    <summary>Competition Scouting Page</summary>
-                    <p>HTML, CSS, JS, PHP, SQL</p>
-                    <p>
-                        This is another page I am really proud of. I wanted to keep the page looking very simple and
-                        efficient, as it would be used almost exclusivey during chaotic competitions. The page only has
-                        a JS powered form on it, where users can enter details about robots they are watching at a
-                        competition. This form data is then sent to PHP, where the data is validated, cleaned, and moved
-                        to an SQL database. The database has a table for how each team performed in each match, and
-                        another table that simply keeps track of what match IDs correlate to each team, for quicker
-                        lookup and sorting by team captains when making decisions in the playoff stage of each
-                        competition. This was an extra feature not requested by the client, but as someone who was in
-                        charge of scouting for my own highschools team, I wish I had something like this to help us.
-                    </p>
-                </details>
+    <div class="section active" id="General">
+        <p>
+            The goal of this website will be to provide a centralized and accessible platform for Team 9062, combining
+            public-facing information with practical tools for internal use during competitions. The site will showcase
+            key aspects of the team, including robot details, members, sponsors, and general information, while
+            maintaining a simple and responsive design inspired by Team 2056’s website. In addition to acting as a
+            portfolio and informational hub, the site will include a competition scouting system that allows team
+            members to record and analyze match data in real time. This dual purpose will ensure that the website is
+            both informative for external audiences and functionally valuable for improving team performance and
+            decision-making during events.
+        </p>
+    </div>
+    <div class="section" id="Trevor">
+        <div class="title">
+            Trevor<br>
+            Overall layout and design
+        </div>
+        <div class="due">
+            Tasks due by: Apr 18th
+            Tasks complete by: Apr 10th
+        </div>
+        <details open class="mainSection">
+            <summary>PLAN BREAKDOWN BY PAGE</summary>
+
+            <details class="subSection">
+                <summary>Page Headers</summary>
+                <div class="languages">HTML, CSS, JS</div>
+                <p>
+                    The page headers will be designed to be responsive to screen width, promoting a consistent user
+                    experience
+                    where users can clearly distinguish between internal pages and external links. The header will
+                    link to the
+                    main pages on the site (robot, members, sponsors, etc.). Using JavaScript, the header will
+                    dynamically
+                    utilize vertical space to allow for larger buttons on smaller screens, while ensuring that the
+                    client logo,
+                    navigation buttons, and slogan remain visible at all times.
+                </p>
+                <img src="images/header.jpg">
             </details>
 
-            <details open class="mainSection">
-                <summary>LANGUAGE BREAKDOWN</summary>
-                <details class="subSection">
-                    <summary>HTML</summary>
-                    <p>Header, Landing, Robot, Scouting</p>
-                    <p>I implemented tags when possible, including divs, forms,
-                        buttons, and details tags. When creating the HTML for the header, I took special care to make
-                        sure that it wouldn't cause conflicts with other content below it in the page. I did my best to
-                        choose id and class names that are descriptive and easily identifiable when looking at either
-                        the HTML, CSS, or JavaScript code that uses any of the tags.</p>
-                </details>
-                <details class="subSection">
-                    <summary>CSS</summary>
-                    <p>Header, Landing, Robot, Scouting</p>
-                    <p>When creating the stylesheets for the website, I made sure to isolate as much of the styling as
-                        possible to not conflict with the stylingsheets being written by my team. I created a
-                        gloablStyle sheet, which ensures that y-overflow can be scrolled to, while eliminating the
-                        default margin around the body. I used a lot of flex boxes to allow for a mobile friendly
-                        experience, as well as many media tags to ensure that content could be resized or rearranged to
-                        be more readable on a mobile device. </p>
-                </details>
-                <details class="subSection">
-                    <summary>JavaScript</summary>
-                    <p>Header, Landing, Scouting</p>
-                    <p>Each component containing JavaScript has its own individual file, to promote seperation of
-                        concerns. The header JavaScript simply checks for the height of the button div, and then sets
-                        the image to the same height. Both of the scouting and timer JavaScript files utilize AJAX to
-                        send asynchronous commands to the PHP backend. The JS implemented for the timer utilizes
-                        localStorage to cache API results, which allows for faster requests, as if the response content
-                        hasn't changed, the API server can simply return a short HTML code, instead of sending all of
-                        the data for the request. The scouting page doesn't validate user input on the front-end, as
-                        many of the options are already locked down by HTML input types, however it does receive
-                        verification from the server that the contents are OK (not malicious), and displays a brief
-                        success or failure message to the user, before clearing the form for another submission.</p>
-                </details>
-                <details class="subSection">
-                    <summary>PHP</summary>
-                    <p>Landing, Scouting</p>
-                    <p></p>
-                </details>
-                <details class="subSection">
-                    <summary>SQL</summary>
-                    <p>All 4 components use HTML: divs, forms, buttons, etc.
-                        Header HTML built to display above any page content</p>
-                </details>
+            <details class="subSection">
+                <summary>Landing Page</summary>
+                <div class="languages">HTML, CSS, JS, PHP</div>
+                <p>
+                    The goal of the site, and by extension the landing page, will be to closely resemble the website
+                    for team
+                    <a href="2056.ca">2056</a>. With this in mind, the design will remain simple, using basic CSS
+                    styling with
+                    flex grids to ensure a mobile-friendly experience. A key feature of this page will be a
+                    countdown timer.
+                    Using AJAX practices, the page will send asynchronous requests to a PHP backend server,
+                    including the last
+                    known timings for events. The PHP server will then query multiple API endpoints and wait for all
+                    responses
+                    before processing the data. If updated data is available, it will be returned to the front-end;
+                    otherwise,
+                    localStorage will be used to retrieve previously stored timings.
+                </p>
+                <img src="images/landing.jpg">
             </details>
 
-        </div>
+            <details class="subSection">
+                <summary>Robots Page</summary>
+                <div class="languages">HTML, CSS</div>
+                <p>
+                    The robots page will maintain a simple design, with no complex functionality. Flexbox layouts
+                    will be used
+                    to ensure a mobile-friendly experience. The page will display details of the robot's
+                    accomplishments in the
+                    2025 season. Due to client requirements and the ongoing 2026 season, details about current
+                    performance will
+                    not be included, in order to maintain a competitive advantage for upcoming events.
+                </p>
+                <img src="images/robot.jpg">
+            </details>
+
+            <details class="subSection">
+                <summary>Competition Scouting Page</summary>
+                <div class="languages">HTML, CSS, JS, PHP, SQL</div>
+                <p>
+                    The competition scouting page will be designed to be simple and efficient, as it will primarily
+                    be used in
+                    fast-paced competition environments. The page will contain a JavaScript-powered form that allows
+                    users to
+                    enter observations about robots during matches. This data will be sent to a PHP backend, where
+                    it will be
+                    validated, sanitized, and stored in an SQL database. The database will include a table that
+                    stores how each
+                    team performs in each match, along with a secondary table that maps match IDs to teams for
+                    faster lookup and
+                    sorting. This additional structure will support team captains during playoff selection by making
+                    relevant
+                    data easier to access and analyze.
+                </p>
+                <img src="images/scouting.jpg">
+            </details>
+        </details>
+
+        <details open class="mainSection">
+            <summary>PLAN BREAKDOWN BY LANGUAGE</summary>
+
+            <details class="subSection">
+                <summary>HTML</summary>
+                <div class="pages">Header, Landing, Robot, Scouting</div>
+                <p>
+                    HTML will be used to structure all pages, making use of appropriate semantic elements such as
+                    divs, forms,
+                    buttons, and details tags. Special care will be taken when designing the header to ensure it
+                    does not
+                    interfere with other page content. IDs and class names will be chosen to be descriptive and
+                    consistent,
+                    allowing for easy identification and maintenance across HTML, CSS, and JavaScript files.
+                </p>
+            </details>
+
+            <details class="subSection">
+                <summary>CSS</summary>
+                <div class="pages">Header, Landing, Robot, Scouting</div>
+                <p>
+                    CSS will be used to style all components of the website, with an emphasis on modular and
+                    isolated styling to
+                    prevent conflicts with other team members' work. A global stylesheet will be implemented to
+                    manage overall
+                    layout behaviour, such as enabling vertical scrolling and removing default browser margins.
+                    Flexbox layouts
+                    and media queries will be used extensively to ensure that the site remains responsive and
+                    readable across a
+                    wide range of devices.
+                </p>
+            </details>
+
+            <details class="subSection">
+                <summary>JavaScript</summary>
+                <div class="pages">Header, Landing, Scouting</div>
+                <p>
+                    Each component requiring JavaScript will be placed in its own file to promote separation of
+                    concerns. The
+                    header script will dynamically adjust image sizing based on the height of navigation elements.
+                    The scouting
+                    and timer components will use AJAX to send asynchronous requests to the PHP backend. While
+                    front-end
+                    validation will be minimal due to the use of constrained input types, the system will still
+                    provide user
+                    feedback based on server-side validation results, displaying success or error messages before
+                    resetting the
+                    form.
+                </p>
+            </details>
+
+            <details class="subSection">
+                <summary>PHP</summary>
+                <div class="pages">Landing, Scouting</div>
+                <p>
+                    PHP will handle backend processing for both the landing page and scouting system. For the
+                    landing page, PHP
+                    will request data from The Blue Alliance API and return relevant competition information to the
+                    front-end.
+                    Future improvements may include utilizing API response codes to detect unchanged data and reduce
+                    processing
+                    overhead. For the scouting system, PHP will validate and sanitize all incoming data, enforce
+                    input length
+                    limits, and use prepared statements to prevent SQL injection and cross-site scripting attacks.
+                    The script
+                    will return detailed error messages for expected issues and more generic responses for
+                    unexpected errors or
+                    suspicious input.
+                </p>
+            </details>
+
+            <details class="subSection">
+                <summary>SQL</summary>
+                <div class="pages">Scouting</div>
+                <p>
+                    The SQL database should use two tables to store match scouting data in a structured and
+                    efficient way. The
+                    primary table will store general match information, including an auto-incrementing match ID and
+                    an
+                    automatically generated timestamp for when the entry is created. All additional match-level data
+                    from the
+                    form will be stored alongside this. A second table will be used to store team-specific data,
+                    where each team
+                    in a match will be given its own row and linked back to the main match entry using a foreign
+                    key. This table
+                    will include the team number, pathing choice, disabled status, and a list of observed
+                    capabilities during
+                    that match.
+
+                    Separating the data in this way will allow multiple teams to be associated with a single match
+                    while keeping
+                    the database organized and easy to query, especially when filtering or sorting by team. It will
+                    also improve
+                    data integrity, as deleting a match should automatically remove all related team entries through
+                    cascading
+                    deletes. None of the data in this system should be hashed, as it is intentionally non-sensitive
+                    and designed
+                    to be publicly accessible. The data is intended to be shared and reused by others for scouting
+                    and analysis
+                    purposes within the FRC community.
+                </p>
+            </details>
+        </details>
+    </div>
+    <div class="section" id="Harris"></div>
+    <div class="section" id="Ali"></div>
+    <div class="section" id="Spencer"></div>
+
     </div>
 
     <div class="Harris">

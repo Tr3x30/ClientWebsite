@@ -1,5 +1,6 @@
 #pageSelector {
-    padding: 2%;
+    padding-top: 2%;
+    padding-bottom: 0;
     display: flex;
     width: 80vw;
     align-items: stretch;
@@ -39,7 +40,10 @@ details {
     padding: 2%;
 }
 
-.mainSection {
+.section {
+    margin: auto;
+    width: 80vw;
+    margin-top: 0;
     background-color: #0066B3;
 }
 
@@ -50,4 +54,45 @@ details {
 
 p {
     text-align: justify;
+}
+
+.pages,
+.languages {
+    text-align: center;
+    font-weight: 600;
+    margin: 1%;
+}
+
+.mainSection summary {
+    font-size: 36px;
+}
+
+.subSection summary {
+    font-size: 24px;
+}
+
+.title {
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    font-weight: 800;
+    padding: 2%;
+}
+
+.due {
+    font-size: 16px;
+    text-align: center;
+    color: white;
+}
+
+.subSection img {
+    width: 100%;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
 }

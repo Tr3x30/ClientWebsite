@@ -37,7 +37,7 @@ $team = $input["team"] ?? null;
 $teamNumber = isset($team["number"]) ? (int) $team["number"] : 0;
 $teamPath = trim($team["path"] ?? "");
 $teamDisabled = trim($team["disabled"] ?? "");
-$teamCapabilities = $team["capabilities"] ?? [];
+$teamCapabilities = array_map('trim', $teamCapabilities);
 
 if ($matchNumber <= 0) {
     fail("Match number is required.");
@@ -77,6 +77,10 @@ if (!in_array($teamDisabled, $allowedDisabled, true)) {
 
 if (!is_array($teamCapabilities)) {
     fail("Capabilities must be an array.");
+}
+
+if (strlen($details) > 1000) {
+    fail("Details too long.");
 }
 
 foreach ($teamCapabilities as $capability) {
@@ -138,6 +142,6 @@ try {
     http_response_code(500);
     echo json_encode([
         "success" => false,
-        "error" => $e->getMessage()
+        "error" => "Server error."
     ]);
 }
