@@ -1,47 +1,43 @@
 <?php
 session_start();
-include 'connect_spencer.php';
+require_once 'connect_spencer.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    die('Invalid request method');
 }
 
-if (!isset($_POST['username']) || !isset($_POST['password'])) {
-    die("Invalid form submission");
+if (!isset($_POST['username'], $_POST['password'])) {
+    die('Invalid form submission');
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
+$username = trim($_POST['username']);
+$password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id, password_hash FROM users WHERE username = ?");
-    $stmt->bind_param("s", $user);
-    $stmt->execute();
-    $result = $stmt->get_result();
+if ($username === '' || $password === '') {
+    die('Username and password are required');
+}
 
-    if ($row = $result->fetch_assoc()) {
-        if (password_verify($pass, $row['password_hash'])) {
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['username'] = $user;
-        }
+$stmt = $pdo->prepare("SELECT id, password_hash FROM users WHERE username = ?");
+$stmt->execute([$username]);
+$row = $stmt->fetch();
 
-        header("Location: ../index.html");
-        exit;
-
-    } else {
-        $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
-
-        $insert_stmt = $conn->prepare("INSERT INTO users (username, password_hash) VALUES (?, ?)");
-        $insert_stmt->bind_param("ss", $user, $hashed_pass);
-
-        if ($insert_stmt->execute()) {
-            $_SESSION['user_id'] = $insert_stmt->insert_id;
-            $_SESSION['username'] = $user;
-        }
-        $insert_stmt->close();
-
-        header("Location: ../index.html");
-        exit;
+if ($row) {
+    if (password_verify($password, $row['password_hash'])) {
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['username'] = $username;
     }
-    $stmt->close();
+
+    header("Location: ../index.html");
+    exit;
+} else {
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $insertStmt = $pdo->prepare("INSERT INTO users (username, password_hash) VALUES (?, ?)");
+    $insertStmt->execute([$username, $hashedPassword]);
+
+    $_SESSION['user_id'] = $pdo->lastInsertId();
+    $_SESSION['username'] = $username;
+
+    header("Location: ../index.html");
+    exit;
 }

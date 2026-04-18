@@ -85,10 +85,11 @@ General contribution:
 
 ================================================================================
 Harris
-
+ 
 Summary: I was responsible for designing, implementing, 
             and maintaining multiple technical components of the website, 
             including layout design, responsiveness, database interaction, and user functionality.
+            Most of the web have good css styles with moble friendly and also web page can eye catching people eyes.
 
 ===================
 Language Breakdown:
@@ -108,6 +109,8 @@ JavaScript  -
             •   Implemented reusable components such as shared headers using iframe integration.
             •   Allowed global header updates without modifying every individual page manually.
             •   Improved efficiency and consistency across the entire website.
+            •   Adding the orginal internal page image to auto change every 3 second
+            •   Adding a little game inside the orginal internal which is introduct about the robotics game
 
 PHP         -  
             •   Developed backend functionality to process user feedback submissions.

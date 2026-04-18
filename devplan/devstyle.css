@@ -1,0 +1,98 @@
+#pageSelector {
+    padding-top: 2%;
+    padding-bottom: 0;
+    display: flex;
+    width: 80vw;
+    align-items: stretch;
+    text-align: center;
+    gap: 1vw;
+    margin: auto;
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 1vw 0;
+    flex: 1 1 150px;
+    font-size: 2vw;
+    flex-grow: 1;
+    background-color: lightgray;
+    cursor: pointer;
+    border-radius: 15px 15px 0 0;
+}
+
+h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 3vw;
+    text-align: center;
+}
+
+.active {
+    background-color: #0066B3;
+}
+
+details {
+    width: 86%;
+    text-align: center;
+    margin: auto;
+    padding: 2%;
+}
+
+.section {
+    margin: auto;
+    width: 80vw;
+    margin-top: 0;
+    background-color: #0066B3;
+}
+
+.subSection {
+    background-color: lightgray;
+    margin: 2%;
+}
+
+p {
+    text-align: justify;
+}
+
+.pages,
+.languages {
+    text-align: center;
+    font-weight: 600;
+    margin: 1%;
+}
+
+.mainSection summary {
+    font-size: 36px;
+}
+
+.subSection summary {
+    font-size: 24px;
+}
+
+.title {
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    font-weight: 800;
+    padding: 2%;
+}
+
+.due {
+    font-size: 16px;
+    text-align: center;
+    color: white;
+}
+
+.subSection img {
+    width: 100%;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
