@@ -249,6 +249,37 @@
                 </p>
             </details>
         </details>
+
+        <details open class="mainSection">
+            <summary>CLIENT FEEDBACK</summary>
+
+            <strong>Event Countdown Automation:</strong><br>
+            The original implementation of the countdown timer relied on locally stored JSON data with
+            hard-coded event timings. The client requested a more automated solution that would not require
+            manual updates. In response, the system was redesigned to fetch live event data from external APIs
+            through a PHP backend. This ensures that event timings remain accurate and up-to-date without
+            developer intervention.<br><br>
+
+            <strong>Scouting Form Efficiency:</strong><br>
+            Feedback indicated that the scouting interface needed to be faster and easier to use during live
+            matches. As a result, the form was simplified and optimized for quick input, while still maintaining
+            full backend validation and sanitization to ensure data integrity.<br><br>
+
+            <strong>Database Structure Optimization:</strong><br>
+            The client requested better organization of scouting data for analysis during playoffs.
+            This led to the implementation of a two-table structure separating match data and team-specific
+            data, improving query performance and making it easier to filter and compare teams.<br><br>
+
+            <strong>Responsive Header Adjustments:</strong><br>
+            Initial header designs did not fully adapt to smaller screens. Based on feedback, the header was
+            updated to dynamically adjust spacing and element sizes using JavaScript, ensuring that navigation
+            remains clear and accessible on all devices.<br><br>
+
+            <strong>User Feedback on Form Submission:</strong><br>
+            The client requested clearer feedback when submitting scouting data. The system was updated to
+            display success and error messages based on server responses, improving usability and reducing
+            confusion during competitions.
+        </details>
     </div>
     <div class="section" id="Harris"></div>
     <div class="section" id="Ali"></div>
