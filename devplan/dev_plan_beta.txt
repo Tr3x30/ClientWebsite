@@ -47,6 +47,7 @@ Ali
 ===================
 Summary: I contributed mainly to front-end page development and initial database setup. 
 I worked on building and styling specific pages and helped structure the database files used in the project.
+Created the admin panel.
 
 ===================
 Language Breakdown:
@@ -78,6 +79,8 @@ Page Breakdown:
 Member page:
             •   Displays team members and their roles.
             •   Structured layout to present information clearly.
+            
+Admin panel:
 
 General contribution:
             •   Helped integrate front-end pages with backend/database structure.
@@ -145,3 +148,34 @@ Sponsor page:
 
 ================================================================================
 Spencer
+
+Summary: I was responsible for implementing the login and sign up functions as well as the sponsor page. In addition I aided Ali in the creation of the admin panel.
+
+===================
+Language Breakdown:
+HTML        -   
+            •   Created the modal for the login and signup page as well as various other HTML elements
+            •   Created the Sponsors page
+
+CSS         -  
+            •   Developed the css for the login and html modal
+            •   Developed the css for the sponsor page
+
+JavaScript  -   
+            •  Implemented the javascript components of the login and signup functions
+            •  Assisted in the development of the javascript elements on the admin panel
+
+PHP         -  
+            •  Developed backend functionality to create accounts and login to your account
+
+SQL         -   
+            •   Implemented the pending_users database tabl
+            •   Created the structure of the users database table
+
+===============
+Page Breakdown:
+Sponsor page:
+            • Implemented the sponsor page, including all css and html
+
+Admin panel:
+            • Created the outline for the admin panel as well as assisting in it's development

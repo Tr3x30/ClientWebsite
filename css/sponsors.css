@@ -1,0 +1,64 @@
+#sponsor
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.subsystem 
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 10%;
+    gap: 50px;
+}
+
+.dark 
+{
+    background-color: #eeeeee;
+}
+
+.subsystem img 
+{
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.subsystem img:hover 
+{
+    transform: scale(1.03);
+}
+
+.context 
+{
+    flex: 1;
+    text-align: left;
+}
+
+.subsystem.dark .context 
+{
+    text-align: right;
+}
+
+@media screen and (max-width: 850px) 
+{
+    .subsystem {
+        flex-direction: column !important;
+        padding: 50px 5%;
+        text-align: center;
+    }
+
+    .subsystem.dark .context, .context {
+        text-align: center;
+    }
+
+    .subsystem img {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+}
