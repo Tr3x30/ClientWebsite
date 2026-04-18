@@ -1,5 +1,15 @@
 -- Database schema for robotics team website
--- Author: Ali Abdullayev
+-- Updated user approval + admin + member profile system
+
+DROP TABLE IF EXISTS match_teams;
+DROP TABLE IF EXISTS matches;
+DROP TABLE IF EXISTS pending_users;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS members;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS robots;
+DROP TABLE IF EXISTS sponsors;
 
 CREATE TABLE roles (
     role_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,12 +63,48 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    display_name VARCHAR(255) NOT NULL,
+    title VARCHAR(255) DEFAULT 'Team Member',
+    description TEXT,
+    profile_picture VARCHAR(255) DEFAULT 'images/empty_icon.webp',
+    email VARCHAR(255),
+    is_admin TINYINT(1) DEFAULT 0,
+    is_approved TINYINT(1) DEFAULT 1,
+    active TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE pending_users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    request_date TIMESTAMP DEFAULT CURRENT_VALUE
+    display_name VARCHAR(255) NOT NULL,
+    title VARCHAR(255) DEFAULT 'Pending Member',
+    description TEXT,
+    profile_picture VARCHAR(255) DEFAULT 'images/empty_icon.webp',
+    email VARCHAR(255),
+    request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE matches (
+    match_id INT AUTO_INCREMENT PRIMARY KEY,
+    match_number INT NOT NULL,
+    match_type VARCHAR(50) NOT NULL,
+    alliance_color VARCHAR(20) NOT NULL,
+    predicted_winner VARCHAR(20) NOT NULL,
+    actual_winner VARCHAR(20) NOT NULL,
+    ranking_points INT NULL,
+    opponents VARCHAR(255),
+    details TEXT
+);
+
+CREATE TABLE match_teams (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    match_id INT NOT NULL,
+    team_number INT NOT NULL,
+    path VARCHAR(20),
+    disabled VARCHAR(10),
+    capabilities JSON,
+    FOREIGN KEY (match_id) REFERENCES matches(match_id) ON DELETE CASCADE
 );

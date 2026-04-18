@@ -37,7 +37,9 @@ $team = $input["team"] ?? null;
 $teamNumber = isset($team["number"]) ? (int) $team["number"] : 0;
 $teamPath = trim($team["path"] ?? "");
 $teamDisabled = trim($team["disabled"] ?? "");
-$teamCapabilities = array_map('trim', $teamCapabilities);
+$teamCapabilities = isset($team["capabilities"]) && is_array($team["capabilities"])
+    ? array_map('trim', $team["capabilities"])
+    : [];
 
 if ($matchNumber <= 0) {
     fail("Match number is required.");

@@ -1,36 +1,63 @@
 <?php
 session_start();
-require_once 'connect_spencer.php';
+require_once 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request method');
 }
 
-if (!isset($_POST['username'], $_POST['password'])) {
-    die('Invalid form submission');
-}
-
-$username = trim($_POST['username']);
-$password = $_POST['password'];
+$username = trim($_POST['username'] ?? '');
+$password = $_POST['password'] ?? '';
 
 if ($username === '' || $password === '') {
     die('All fields are required');
 }
 
+$displayName = $username;
+$email = filter_var($username, FILTER_VALIDATE_EMAIL) ? $username : null;
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-try 
-{
-    $stmt = $pdo->prepare("INSERT INTO pending_users (username, password_hash) VALUES (?, ?)");
-    $stmt->execute([$username, $hashedPassword]);
-    exit;
+try {
+    $checkApproved = $pdo->prepare("SELECT id FROM users WHERE username = ?");
+    $checkApproved->execute([$username]);
 
-} catch (PDOException $e) 
-{
-    if ($e->getCode() == 23000) {
-        die('This username is already taken or a request is already pending.');
+    if ($checkApproved->fetch()) {
+        die('That username already exists.');
     }
 
-    error_log($e->getMessage());
-    die('An error occurred while processing your request. Please try again later.');
+    $checkPending = $pdo->prepare("SELECT id FROM pending_users WHERE username = ?");
+    $checkPending->execute([$username]);
+
+    if ($checkPending->fetch()) {
+        die('That request is already pending.');
+    }
+
+    $stmt = $pdo->prepare("
+        INSERT INTO pending_users (
+            username,
+            password_hash,
+            display_name,
+            title,
+            description,
+            profile_picture,
+            email,
+            request_date
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
+    ");
+
+    $stmt->execute([
+        $username,
+        $hashedPassword,
+        $displayName,
+        'Pending Member',
+        '',
+        'images/empty_icon.webp',
+        $email
+    ]);
+
+    header("Location: ../index.html?status=pending");
+    exit;
+} catch (PDOException $e) {
+    die('Error processing request.');
 }
+?>

@@ -1,17 +1,29 @@
 <?php
 /**
- * Include this to connect. Change the dbname to match your database,
- * and make sure your login information is correct after you upload 
- * to csunix or your app will stop working.
- * 
- * Sam Scott, McMaster University, 2025
+ * Main DB connection file
+ * Use this everywhere.
  */
+
+$host = 'localhost';
+$db = 'gofft1_db';
+$user = 'gofft1_local';
+$pass = 'j<@h!V}O';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES => false,
+];
+
 try {
-    $dbh = new PDO(
-        "mysql:host=localhost;dbname=gofft1_db",
-        "gofft1_local",
-        "j<@h!V}O"
-    );
-} catch (Exception $e) {
-    die("ERROR: Couldn't connect. {$e->getMessage()}");
+    $pdo = new PDO($dsn, $user, $pass, $options);
+
+    /* keep backward compatibility with submit.php */
+    $dbh = $pdo;
+} catch (PDOException $e) {
+    die("ERROR: Couldn't connect. " . $e->getMessage());
 }
+?>
