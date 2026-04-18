@@ -201,6 +201,13 @@ $users = $usersStmt->fetchAll();
 
                                 <button type="submit">Update User</button>
                             </form>
+                            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+                            <form action="delete_user.php" method="POST" onsubmit="return confirm('Are you sure you want to permanently delete this user?');">
+                                <input type="hidden" name="id" value="<?php echo (int)$user['id']; ?>">
+                                <button type="submit" style="background-color: #d9534f; color: white; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px;">
+                                    Delete User
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>

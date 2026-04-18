@@ -1,5 +1,5 @@
 -- Database schema for robotics team website
--- Updated user approval + admin + member profile system
+-- Full group collaboration
 
 DROP TABLE IF EXISTS match_teams;
 DROP TABLE IF EXISTS matches;

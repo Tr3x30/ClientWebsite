@@ -2,36 +2,42 @@
 session_start();
 require_once 'connect.php';
 
+function sendResponse($status, $message, $redirect = null) {
+    header('Content-Type: application/json');
+    echo json_encode([
+        'status' => $status,
+        'message' => $message,
+        'redirect' => $redirect
+    ]);
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    die('Invalid request method');
+    sendResponse('error', 'Invalid request method');
 }
 
 $username = trim($_POST['username'] ?? '');
 $password = $_POST['password'] ?? '';
 
 if ($username === '' || $password === '') {
-    die('Username and password are required');
+    sendResponse('error', 'Username and password are required');
 }
 
-$stmt = $pdo->prepare("
-    SELECT id, username, password_hash, display_name, is_admin, active
-    FROM users
-    WHERE username = ?
-    LIMIT 1
-");
+$stmt = $pdo->prepare("SELECT id, username, password_hash, display_name, is_admin, active FROM users WHERE username = ? LIMIT 1");
 $stmt->execute([$username]);
 $user = $stmt->fetch();
 
-if (!$user) {
-    die('Invalid username/password or account not yet approved.');
-}
-
-if ((int)$user['active'] !== 1) {
-    die('This account is inactive.');
+if (!$user)
+{
+    sendResponse('error', 'Account doesn\'t exist');
 }
 
 if (!password_verify($password, $user['password_hash'])) {
-    die('Invalid username/password or account not yet approved.');
+    sendResponse('error', 'Invalid username or password.');
+}
+
+if ((int)$user['active'] !== 1) {
+    sendResponse('error', 'This account is inactive.');
 }
 
 $_SESSION['user_id'] = $user['id'];
@@ -42,11 +48,7 @@ $_SESSION['is_admin'] = (int)$user['is_admin'];
 $updateLogin = $pdo->prepare("UPDATE users SET updated_at = NOW() WHERE id = ?");
 $updateLogin->execute([$user['id']]);
 
-if ((int)$user['is_admin'] === 1) {
-    header("Location: admin.php");
-    exit;
-}
+$redirectUrl = ((int)$user['is_admin'] === 1) ? "php/admin.php" : "Member.php";
 
-header("Location: ../Member.php");
-exit;
+sendResponse('success', 'Logged in successfully', $redirectUrl);
 ?>
