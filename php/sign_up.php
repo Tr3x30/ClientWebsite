@@ -6,6 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request method');
 }
 
+if (!isset($_POST['username'], $_POST['password'])) {
+    die('Invalid form submission');
+}
+
 $username = trim($_POST['username']);
 $password = $_POST['password'];
 
@@ -15,15 +19,18 @@ if ($username === '' || $password === '') {
 
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-$stmt = $pdo->prepare("INSERT INTO pending_users (username, password_hash, request_date) VALUES (?, ?, NOW())");
-
-try {
+try 
+{
+    $stmt = $pdo->prepare("INSERT INTO pending_users (username, password_hash) VALUES (?, ?)");
     $stmt->execute([$username, $hashedPassword]);
-    header("Location: ../index.html?status=pending");
     exit;
-} catch (PDOException $e) {
+
+} catch (PDOException $e) 
+{
     if ($e->getCode() == 23000) {
-        die('Username already exists or request is pending.');
+        die('This username is already taken or a request is already pending.');
     }
-    die('Error processing request.');
+
+    error_log($e->getMessage());
+    die('An error occurred while processing your request. Please try again later.');
 }

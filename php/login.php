@@ -23,15 +23,17 @@ $row = $stmt->fetch();
 
 if ($row) 
 {
-    if ($row && password_verify($password, $row['password_hash'])) 
-    {
+    if (password_verify($password, $row['password_hash'])) {
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['username'] = $username;
-        header("Location: ../index.html");
         exit;
     } 
     else 
     {
-        die('Invalid username/password or account not yet approved.');
+        die('Invalid username or password.');
     }
+} 
+else 
+{
+    die('Account not found or pending approval.');
 }
