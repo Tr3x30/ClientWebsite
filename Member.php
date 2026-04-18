@@ -44,7 +44,7 @@ $members = $stmt->fetchAll();
             <?php if (isset($_SESSION['user_id'])): ?>
                 <p>
                     Logged in as <strong><?php echo htmlspecialchars($_SESSION['display_name'] ?? $_SESSION['username']); ?></strong>
-                    <?php if (!empty($_SESSION['is_admin']) && (int)$_SESSION['is_admin'] === 1): ?>
+                    | <a href="php/profile.php">Edit Profile</a> <?php if (!empty($_SESSION['is_admin']) && (int)$_SESSION['is_admin'] === 1): ?>
                         | <a href="php/admin.php">Admin Panel</a>
                     <?php endif; ?>
                     | <a href="php/logout.php">Logout</a>
