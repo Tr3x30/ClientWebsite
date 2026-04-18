@@ -128,17 +128,48 @@
         </div>
 
         <div class="column1">
-            <h3></h3>
-            <p><a href="login.html">Login</a></p>
+            <h3>Connect:</h3>
+            <p><a href="javascript:void(0)" onclick="openLogin()">Login</a></p>
+            <p><a href="scouting.html">Scouting</a></p>
         </div>
 
         <div class="column1">
             <h3>Contact:</h3>
-            <p><a href="mailto:company@example.com">Email</a></p>
+            <p><a href="mailto:chenghongkiu6@gmail.com">Email</a></p>
             <p>Support</p>
-            <p>Feedback</p>
+            <p><a href="feedback.html">Feedback</a></p>
         </div>
     </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Login</h2>
+            <form action="php/login.php" method="POST">
+                <input type="text" name="username" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById("loginModal");
+    const closeBtn = document.querySelector(".close-button");
+    window.openLogin = function() {
+        modal.style.display = "flex";
+    }
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});
+</script>
 
 </body>
 
