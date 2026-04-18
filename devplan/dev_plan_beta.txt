@@ -2,7 +2,7 @@ HIGH LEVEL ROLES (in addition to programming):
 Trevor  - Overall layout and design
 Ali     - Front-end page development and initial database setup
 Harris  - Team coordination & task delegation
-Spencer - 
+Spencer - Design of core features and backend structure
 
 ================================================================================
 ================================================================================
