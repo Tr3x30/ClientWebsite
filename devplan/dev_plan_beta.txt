@@ -1,6 +1,6 @@
 HIGH LEVEL ROLES (in addition to programming):
 Trevor  - Overall layout and design
-Ali     - Front-end page development and initial database setup
+Ali     - Front-end page development and database / user system implementation
 Harris  - Team coordination & task delegation
 Spencer - 
 
@@ -8,6 +8,7 @@ Spencer -
 ================================================================================
 SPECIFIC PROGRAMMING TASKS:
 ================================================================================
+
 Trevor
 ===================
 Language Breakdown:
@@ -30,65 +31,104 @@ Page Breakdown:
 Header
     Responsive design with links to main pages (robot, members, sponsors, etc.)
     Resizes dynamically using JS
+
 Landing Page
     Landing page with introduction to the team
     countdown timer to next event using TBA api (private)
-    accessed asycnchronously using PHP to protect the API key
+    accessed asynchronously using PHP to protect the API key
+
 Robots Page
     Basic HTML/CSS page. Uses media tags to adjust to mobile site version
     Details of 9062 robot from 2025 season
+
 Competition Scouting Page
-	Basic HTML/JS form with PHP/SQL backend
+    Basic HTML/JS form with PHP/SQL backend
     Input performance of robots at First Robotics Competitions events
     PHP backend will load data into database to help make drafting decisions
 
 ================================================================================
 Ali
 ===================
-Summary: I contributed mainly to front-end page development and initial database setup. 
-I worked on building and styling specific pages and helped structure the database files used in the project.
-Created the admin panel.
+Summary:
+I was responsible for the full user management system, including database design,
+account approval workflow, and dynamic member display. I also contributed to front-end
+page structure and integration with backend functionality.
 
 ===================
 Language Breakdown:
 
 HTML        -  
-            •   Worked on the Member page and contributed to structuring page content.
-            •   Helped organize layout elements for better readability and navigation.
+            •   Developed and structured the Member page layout.
+            •   Converted Member page from static HTML into dynamic PHP (Member.php).
+            •   Integrated navigation updates to support dynamic user system.
 
 CSS         -  
-            •   Styled individual pages and adjusted layouts.
-            •   Ensured page-specific styles do not interfere with shared header/footer components.
+            •   Assisted in styling pages and maintaining layout consistency.
+            •   Ensured page-specific styles do not conflict with shared components.
 
 JavaScript  -  
-            •   Worked with basic JavaScript functionality already used in the project.
-            •   Helped ensure page elements and interactions behaved properly when integrated with the rest of the site.
+            •   Supported modal functionality for login/signup forms.
+            •   Ensured frontend interaction works correctly with backend authentication.
 
 PHP         -  
-            •   Worked with existing PHP files (login, feedback, connection) to understand how data flows between frontend and backend.
-            •   Helped ensure forms connect properly to backend processing.
+            •   Designed and implemented full authentication system:
+                    - login handling
+                    - session management
+                    - role-based redirection (admin vs user)
+            •   Built complete admin panel system:
+                    - view pending users
+                    - approve/reject accounts
+                    - edit user profiles
+            •   Implemented account approval workflow:
+                    signup → pending_users → admin approval → users table
+            •   Created backend files:
+                    - admin.php
+                    - approve_user.php
+                    - reject_user.php
+                    - update_user.php
+                    - get_members.php
+            •   Converted Member page into dynamic PHP page pulling data from database.
 
 SQL         -  
-            •   Created and edited schema.sql and seed.sql.
-            •   Defined tables such as users and members.
-            •   Inserted sample data for testing database functionality.
+            •   Designed and implemented database schema for:
+                    - users
+                    - pending_users
+            •   Extended users table with:
+                    - display_name
+                    - title
+                    - description
+                    - profile_picture
+                    - email
+                    - is_admin
+                    - active
+            •   Implemented approval-based account system using pending_users → users flow.
+            •   Created and updated schema.sql and seed.sql with working test data.
 
 ===============
 Page Breakdown:
 
-Member page:
-            •   Displays team members and their roles.
-            •   Structured layout to present information clearly.
-            
-Admin panel:
+Member Page:
+            •   Fully dynamic page (Member.php).
+            •   Displays all approved users from database.
+            •   Automatically updates when admin edits user data.
 
-General contribution:
-            •   Helped integrate front-end pages with backend/database structure.
-            •   Assisted in preparing the project for team integration.
+Admin Panel:
+            •   Fully functional admin dashboard (php/admin.php).
+            •   Displays pending users and approved users.
+            •   Allows:
+                    - approving/rejecting users
+                    - editing user attributes
+                    - managing roles and account status
+
+General Contribution:
+            •   Built complete user lifecycle system:
+                    signup → pending → approval → active user
+            •   Integrated frontend pages with backend database system.
+            •   Ensured data consistency between UI and database.
 
 ================================================================================
 Harris
- 
+
 Summary: I was responsible for designing, implementing, 
             and maintaining multiple technical components of the website, 
             including layout design, responsiveness, database interaction, and user functionality.
@@ -103,48 +143,40 @@ HTML        -
             •   Organized content to ensure readability and logical navigation throughout the website.
 
 CSS         -  
-            •    Developed consistent header and footer layouts shared across all pages.
-            •    Implemented responsive design to support different screen sizes.
-            •    For example, when screen width becomes smaller than 500px, 
-            •    footer columns automatically adjust from vertical layout to horizontal layout for better mobile viewing.
+            •   Developed consistent header and footer layouts shared across all pages.
+            •   Implemented responsive design to support different screen sizes.
+            •   Footer adjusts layout automatically on small screens.
 
 JavaScript  -   
             •   Implemented reusable components such as shared headers using iframe integration.
-            •   Allowed global header updates without modifying every individual page manually.
-            •   Improved efficiency and consistency across the entire website.
-            •   Adding the orginal internal page image to auto change every 3 second
-            •   Adding a little game inside the orginal internal which is introduct about the robotics game
+            •   Enabled global updates across pages.
+            •   Added image auto-change feature on original page.
+            •   Added small interactive game component.
 
 PHP         -  
             •   Developed backend functionality to process user feedback submissions.
-            •   Created submit_feedback.php to receive user comments and ratings.
-            •   Built connect.php to establish database connections between web pages and the server database (Macid_db).
+            •   Created submit_feedback.php to store feedback data.
+            •   Built database connection for feedback system.
 
 SQL         -   
-            •   Designed and managed the database structure.
-            •   Created tables to store user star ratings and written feedback.
-            •   Stored usernames and comments to help analyze user opinions and improve the website in the future.
+            •   Designed tables to store user feedback and ratings.
+            •   Stored usernames and comments for analysis.
 
 ===============
 Page Breakdown:
 Location page:
-            •   Introduces the client team's location.
-            •   Integrated Google Maps using an iframe for interactive navigation.
+            •   Displays team location with embedded Google Maps.
 
 Feedback page:
-            •   Implemented a five-star rating system and comment submission form.
-            •   User feedback is stored in the database using PHP and SQL.
-            •   Enables collection of user opinions for future website improvements.
+            •   Five-star rating system with comment submission.
+            •   Stores feedback in database.
 
-orginal page:
-            •   Displays event photos and background information about the robotics team.
-            •   Embedded hidden clickable links directing users to the team's YouTube channel.
-            •   Includes written content explaining the purpose and history of the robotics team.
+Original page:
+            •   Displays team history and media.
+            •   Includes hidden interactive elements and links.
 
 Sponsor page:
-            •   Developed according to client requirements.
-            •   Displays and introduces all sponsors supporting Team 9062.
-            •   Organized sponsor information in a clear and visually structured format.
+            •   Displays sponsor information clearly and professionally.
 
 ================================================================================
 Spencer
@@ -154,28 +186,29 @@ Summary: I was responsible for implementing the login and sign up functions as w
 ===================
 Language Breakdown:
 HTML        -   
-            •   Created the modal for the login and signup page as well as various other HTML elements
-            •   Created the Sponsors page
+            •   Created login/signup modal interfaces.
+            •   Developed sponsor page structure.
 
 CSS         -  
-            •   Developed the css for the login and html modal
-            •   Developed the css for the sponsor page
+            •   Styled login/signup modals.
+            •   Styled sponsor page layout.
 
 JavaScript  -   
-            •  Implemented the javascript components of the login and signup functions
-            •  Assisted in the development of the javascript elements on the admin panel
+            •   Implemented frontend logic for login/signup interactions.
+            •   Assisted with admin panel JS behavior.
 
 PHP         -  
-            •  Developed backend functionality to create accounts and login to your account
+            •   Developed backend authentication logic.
+            •   Handled account creation and login validation.
 
 SQL         -   
-            •   Implemented the pending_users database tabl
-            •   Created the structure of the users database table
+            •   Created base structure of users table.
+            •   Implemented pending_users table for request-based accounts.
 
 ===============
 Page Breakdown:
 Sponsor page:
-            • Implemented the sponsor page, including all css and html
+            •   Fully implemented sponsor display page.
 
 Admin panel:
-            • Created the outline for the admin panel as well as assisting in it's development
+            •   Assisted in initial structure and development of admin system.
