@@ -21,23 +21,17 @@ $stmt = $pdo->prepare("SELECT id, password_hash FROM users WHERE username = ?");
 $stmt->execute([$username]);
 $row = $stmt->fetch();
 
-if ($row) {
-    if (password_verify($password, $row['password_hash'])) {
+if ($row) 
+{
+    if ($row && password_verify($password, $row['password_hash'])) 
+    {
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['username'] = $username;
+        header("Location: ../index.html");
+        exit;
+    } 
+    else 
+    {
+        die('Invalid username/password or account not yet approved.');
     }
-
-    header("Location: ../index.html");
-    exit;
-} else {
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    $insertStmt = $pdo->prepare("INSERT INTO users (username, password_hash) VALUES (?, ?)");
-    $insertStmt->execute([$username, $hashedPassword]);
-
-    $_SESSION['user_id'] = $pdo->lastInsertId();
-    $_SESSION['username'] = $username;
-
-    header("Location: ../index.html");
-    exit;
 }

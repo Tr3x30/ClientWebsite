@@ -155,13 +155,14 @@
 
         <div class="column1">
             <h3>Connect:</h3>
-            <p><a href="javascript:void(0)" onclick="openLogin()">Login</a></p>
+            <p><a href="javascript:void(0)" onclick="openModal('loginModal')">Login</a></p>
+            <p><a href="javascript:void(0)" onclick="openModal('signupModal')">Sign Up</a></p>
             <p><a href="scouting.html">Scouting</a></p>
         </div>
 
         <div class="column1">
             <h3>Contact:</h3>
-            <p><a href="mailto:chenghongkiu6@gmail.com">Email:</a></p>
+            <p><a href="mailto:chenghongkiu6@gmail.com">Email</a></p>
             <p><a href="https://www.example.com/">Support</a></p>
             <p><a href="feedback.html">Feedback</a></p>
         </div>
@@ -169,32 +170,43 @@
 
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
+            <span class="close-button" onclick="closeModal('loginModal')">&times;</span>
             <h2>Login</h2>
             <form action="php/login.php" method="POST">
                 <input type="text" name="username" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Sign In</button>
+                <button type="submit" class="btn-primary">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Request Access</h2>
+            <p style="font-size: 0.8em; color: #666; margin-bottom: 10px;">Your account will require admin approval.</p>
+            <form action="php/sign_up.php" method="POST">
+                <input type="text" name="username" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Create Password" required>
+                <button type="submit" class="btn-primary">Request Account</button>
             </form>
         </div>
     </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById("loginModal");
-    const closeBtn = document.querySelector(".close-button");
-    window.openLogin = function() {
-        modal.style.display = "flex";
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "flex";
     }
-    closeBtn.onclick = function() {
-        modal.style.display = "none";
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
     }
+
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = "none";
         }
-    }
-});
+}
 </script>
 </body>
 
