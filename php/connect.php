@@ -12,6 +12,7 @@ try {
         "gofft1_local",
         "j<@h!V}O"
     );
+    $pdo = $dbh;
 } catch (Exception $e) {
     die("ERROR: Couldn't connect. {$e->getMessage()}");
 }
