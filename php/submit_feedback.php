@@ -1,3 +1,6 @@
+<!-- Author: Trevor Goff
+Date: Apr 2-19
+Description: Scouting submission form backend for competitions.F-->
 <?php
 
 $conn = new mysqli("localhost", "chengh65_local", "yrMll>%5", "chengh65_db");

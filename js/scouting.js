@@ -1,3 +1,6 @@
+// Author: Trevor Goff
+// Date: Apr 2-19
+// Description: Send form data from scouting page to PHP backend.
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('scoutForm');
     const submitButton = form.querySelector('button[type="submit"]');
@@ -9,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         status.style.marginTop = '10px';
         form.appendChild(status);
     }
-
+    // On submit, format data to a json and send in a POST request to the backend.
     form.addEventListener('submit', async function (event) {
         event.preventDefault();
 

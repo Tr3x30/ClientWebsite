@@ -1,3 +1,6 @@
+<!-- Author: Trevor Goff
+Date: Mar30-Apr 19
+Description: PHP Backend to safely fetch competition data from API. -->
 <?php
 header("Content-Type: application/json");
 

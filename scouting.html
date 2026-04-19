@@ -1,3 +1,8 @@
+<!--
+Author: Trevor Goff
+Date: Apr 2-19
+Description: Scouting submission form for competitions. Uses PHP and SQL backend.
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -169,17 +174,19 @@
     </div>
 
     <div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-button" onclick="closeModal('loginModal')">&times;</span>
-        <h2>Login</h2>
-        <form id="loginForm">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <div id="loginError" style="color: white; background-color: #ff4d4d; padding: 10px; margin-bottom: 15px; border-radius: 4px; display: none; font-size: 0.9em; text-align: center;"></div>
-            <button type="submit" class="btn-primary">Sign In</button>
-        </form>
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div id="loginError"
+                    style="color: white; background-color: #ff4d4d; padding: 10px; margin-bottom: 15px; border-radius: 4px; display: none; font-size: 0.9em; text-align: center;">
+                </div>
+                <button type="submit" class="btn-primary">Sign In</button>
+            </form>
+        </div>
     </div>
-</div>
 
     <div id="signupModal" class="modal">
         <div class="modal-content">
@@ -194,46 +201,46 @@
         </div>
     </div>
 
-<script>
-    function openModal(modalId) {
-        document.getElementById(modalId).style.display = "flex";
-    }
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.style.display = "none";
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
         }
-    }
 
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-    const errorDiv = document.getElementById('loginError');
-
-    fetch('php/login.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            window.location.href = data.redirect;
-        } else {
-            errorDiv.textContent = data.message;
-            errorDiv.style.display = 'block';
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
         }
-    })
-    .catch(error => {
-        errorDiv.textContent = 'An unexpected error occurred.';
-        errorDiv.style.display = 'block';
-    });
-});
-</script>
+
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const errorDiv = document.getElementById('loginError');
+
+            fetch('php/login.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        window.location.href = data.redirect;
+                    } else {
+                        errorDiv.textContent = data.message;
+                        errorDiv.style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    errorDiv.textContent = 'An unexpected error occurred.';
+                    errorDiv.style.display = 'block';
+                });
+        });
+    </script>
 </body>
 
 </html>

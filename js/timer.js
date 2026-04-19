@@ -1,6 +1,8 @@
-let cachedETag = null;
-let cachedData = null;
+// Author: Trevor Goff
+// Date: Mar 30-19
+// Description: JS to call PHP backend to get competition info.
 
+// Call backend
 async function getCompetitions() {
     const res = await fetch('./php/get_competitions.php');
 
@@ -11,6 +13,7 @@ async function getCompetitions() {
     return await res.json();
 }
 
+// Set time element to 2 digit (add leading zero) 
 function setTwoDigits(unitElement, value) {
     const digits = unitElement.querySelectorAll(".digit");
     const text = String(value).padStart(2, "0");
@@ -19,6 +22,7 @@ function setTwoDigits(unitElement, value) {
     digits[1].textContent = text[1];
 }
 
+// Update the countdown every second
 function updateCountdown(targetEpoch) {
     const now = Date.now();
     let diff = targetEpoch - now;
@@ -44,6 +48,7 @@ function updateCountdown(targetEpoch) {
     setTwoDigits(units[4], secs);
 }
 
+// Change the event name to take up the same horizontal space as the timers
 function resizeEventName() {
     const eventName = document.getElementById("event-name");
     const computed = window.getComputedStyle(eventName);

@@ -1,3 +1,7 @@
+/* Author: Trevor Goff
+Date: Mar 30-Apr 19
+Description: Styling for the timer on the landing page of the site. */
+
 #event-countdown #event-name {
     display: block;
     width: fit-content;

@@ -1,3 +1,6 @@
+/* Author: Trevor Goff
+Date: Mar 11-Apr 19
+Description: Styling that affects only elements in the header of the page. */
 #header * {
     background-color: transparent;
     text-align: center;

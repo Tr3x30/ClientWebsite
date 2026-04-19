@@ -1,3 +1,7 @@
+/* Author: Trevor Goff
+Date: Mar 11-Apr 19
+Description: Styling to affect the body of the robots page. */
+
 #robot {
     display: flex;
     flex-direction: column;
