@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once 'php/connect.php';
-$pdo = $dbh;
 $stmt = $pdo->prepare("
     SELECT id, username, display_name, title, description, profile_picture, email, is_admin
     FROM users
